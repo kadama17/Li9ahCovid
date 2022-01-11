@@ -1,0 +1,186 @@
+import React, { Component } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import axios from "axios";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import { useParams } from "react-router-dom";
+
+export default class EditVaccin extends Component {
+  constructor(props) {
+    super(props);
+    this.onChangeVaccinCode = this.onChangeVaccinCode.bind(this);
+    this.onChangeVaccinNom = this.onChangeVaccinNom.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeQuantite = this.onChangeQuantite.bind(this);
+    this.onChangeDateExp = this.onChangeDateExp.bind(this);
+    this.onChangeNbreDose = this.onChangeNbreDose.bind(this);
+
+    this.onSubmit = this.onSubmit.bind(this);
+    // State
+    this.state = {
+      code_vaccin: "",
+      nom_vaccin: "",
+      description: "",
+      quantite: "",
+      date_exp: "",
+      nbre_dose: "",
+    };
+  }
+
+  componentDidMount() {
+    const id = window.location.pathname.split("/")[2];
+    console.log(id);
+
+    axios
+      .get("http://127.0.0.1:8000/api/vaccins/" + id)
+      .then((res) => {
+        this.setState({
+          code_vaccin: this.state.code_vaccin,
+          nom_vaccin: this.state.nom_vaccin,
+          description: this.state.description,
+          quantite: this.state.quantite,
+          date_exp: this.state.date_exp,
+          nbre_dose: this.state.nbre_dose,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  onChangeVaccinCode(e) {
+    this.setState({code_vaccin: e.target.value})
+  }
+
+  onChangeVaccinNom(e) {
+    this.setState({vaccin_nom: e.target.value})
+  }
+
+  onChangeDescription(e) {
+    this.setState({description: e.target.value})
+  }
+
+  onChangeQuantite(e) {
+    this.setState({quantite: e.target.value})
+  }
+  onChangeDateExp(e) {
+    this.setState({date_exp: e.target.value})
+  }
+  onChangeNbreDose(e) {
+    this.setState({nbre_dose: e.target.value})
+  }
+
+ 
+  onSubmit(e) {
+    e.preventDefault();
+
+    const vaccinObject = {
+      code_vaccin: this.state.code_vaccin,
+      nom_vaccin:  this.state.nom_vaccin,
+      description:  this.state.description,
+      quantite:  this.state.quantite,
+      date_exp:  this.state.date_exp,
+      nbre_dose:  this.state.nbre_dose
+    };
+    const id = window.location.pathname.split("/")[2];
+    console.log(id);
+
+    axios
+      .put("http://127.0.0.1:8000/api/vaccins/" + id, vaccinObject)
+      .then((res) => {
+        console.log(res.data);
+        console.log("Expense successfully updated");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    // Redirect to Expense List
+    this.props.history.push("/liste-vaccin");
+  }
+
+  render() {
+    return (
+      <div className="form-wrapper">
+       <Form onSubmit={this.onSubmit}>
+        <Row> 
+            <Col>
+             <Form.Group controlId="CodeVaccin">
+                <Form.Label>Code Vaccin</Form.Label>
+                <Form.Control type="text" value={this.state.code_vaccin} onChange={this.onChangeVaccinCode}/>
+             </Form.Group>
+            
+            </Col>
+
+            <Col>
+             <Form.Group controlId="VaccinNom">
+                <Form.Label>Nom Vaccin</Form.Label>
+                <Form.Control type="text" value={this.state.nom_vaccin} onChange={this.onChangeVaccinNom}/>
+             </Form.Group>
+            
+            </Col>
+            <Col>
+             <Form.Group controlId="Description">
+                <Form.Label>Description</Form.Label>
+                <Form.Control type="text" value={this.state.description} onChange={this.onChangeDescription}/>
+             </Form.Group>
+             </Col>
+
+             <Col>
+             <Form.Group controlId="Quantite">
+                <Form.Label>Quantite</Form.Label>
+                <Form.Control type="number" value={this.state.quantite} onChange={this.onChangeQuantite}/>
+             </Form.Group>
+            
+            </Col>
+            <Col>
+             <Form.Group controlId="DateExp">
+                <Form.Label>Date Expiration vaccin</Form.Label>
+                <Form.Control type="text" value={this.state.date_exp} onChange={this.onChangeDateExp}/>
+             </Form.Group>
+            
+            </Col>
+
+            <Col>
+             <Form.Group controlId="NbreDose">
+                <Form.Label>Nombre de dose par personnes</Form.Label>
+                <Form.Control type="number" value={this.state.nbre_dose} onChange={this.onChangeNbreDose}/>
+             </Form.Group>
+            
+            </Col>
+
+            <Col>
+             <Form.Group controlId="Professsion">
+                <Form.Label>Profession Patient</Form.Label>
+                <Form.Control type="text" value={this.state.profession} onChange={this.onChangePatientProfession}/>
+             </Form.Group>
+            
+            </Col>
+            <Col>
+             <Form.Group controlId="Sexe">
+                <Form.Label>Sexe Patient</Form.Label>
+                <Form.Control type="text" value={this.state.sexe} onChange={this.onChangePatientSexe}/>
+             </Form.Group>
+            
+            </Col>
+            <Col>
+             <Form.Group controlId="Statut">
+                <Form.Label>Statut</Form.Label>
+                <Form.Control type="text" value={this.state.statut} onChange={this.onChangePatientStatut}/>
+             </Form.Group>
+            
+            </Col>
+           
+        </Row>
+            
+
+       
+        <Button variant="primary" size="lg" block="block" type="submit">
+          Add Expense
+        </Button>
+      </Form>
+      </div>
+    );
+  }
+}
