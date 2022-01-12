@@ -36,8 +36,8 @@ class VaccinationController extends Controller
      */
     public function store(Request $request)
     {
-        $data['code_patient'] = $request['code_patient'];
-        $data['code_vaccin'] = $request['code_vaccin'];
+        $data['id_patient'] = $request['id_patient'];
+        $data['nom_vaccin'] = $request['nom_vaccin'];
         $data['date_dose_1'] = $request['date_dose_1'];
         $data['rdv'] = $request['rdv'];
         $data['date_dose_2'] = $request['date_dose_2'];
@@ -61,6 +61,13 @@ class VaccinationController extends Controller
         return response()->json($vaccinations);
     }
 
+    public function showPatient($id_patient)
+    {
+         $vaccinations = Vaccination::where('id_patient',$id_patient)->first();
+        return response()->json($vaccinations);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -82,11 +89,11 @@ class VaccinationController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'code_patient' => 'required',
-            'code_vaccin' => 'required',
-            'date_dose_1' => 'required',
-            'rdv' => 'required',
-            'date_dose_2' => 'required',
+            'id_patient' => '',
+            'nom_vaccin' => '',
+            'date_dose_1' => '',
+            'rdv' => '',
+            'date_dose_2' => '',
           
         ]);
 
@@ -97,6 +104,26 @@ class VaccinationController extends Controller
         ]);
         return redirect('/');
     }
+    public function updatePatient(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'id_patient' => '',
+            'nom_vaccin' => '',
+            'date_dose_1' => '',
+            'rdv' => '',
+            'date_dose_2' => '',
+          
+        ]);
+
+        Vaccination::whereId($id)->update($validatedData);
+
+        return response()->json([
+            'message' => 'Vaccination misa à jour!'
+        ]);
+        return redirect('/');
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

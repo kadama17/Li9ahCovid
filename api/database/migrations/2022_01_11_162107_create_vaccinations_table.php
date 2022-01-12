@@ -14,14 +14,13 @@ class CreateVaccinationsTable extends Migration
     public function up()
     {
         Schema::create('vaccinations', function (Blueprint $table) {
-            $table->id();
-            $table->string('code_patient');
-            $table->string('code_vaccin');
+            $table->increments('id');
+            $table->integer('id_patient')->unsigned();
+            $table->string('nom_vaccin');
             $table->date('date_dose_1');
             $table->date('rdv');
-            $table->date('date_dose_2');
-            $table->foreign('code_patient')->references('code_patient')->on('patients');
-            $table->foreign('code_vaccin')->references('code_vaccin')->on('vaccins');
+            $table->date('date_dose_2')->nullable();
+            $table->foreign('id_patient')->references('id')->on('patients');
 
             $table->timestamps();
         });

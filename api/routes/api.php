@@ -44,3 +44,8 @@ Route::post('/vaccinations', [VaccinationController::class, 'store'])->name('vac
 Route::get('/vaccinations/{vaccination}', [VaccinationController::class, 'show'])->name('vaccinations.show');
 Route::put('/vaccinations/{vaccination}', [VaccinationController::class, 'update'])->name('vaccinations.update');
 Route::delete('/vaccinations/{vaccination}', [VaccinationController::class, 'destroy'])->name('vaccinations.destroy');
+
+
+Route::get('/vaccinationsPatient/{id_patient}', [VaccinationController::class, 'showPatient'])->name('vaccinations.showPatient');
+Route::put('/vaccinationsPatient/{id_patient}', [VaccinationController::class, 'updatePatient'])->name('vaccinations.updatePatient');
+

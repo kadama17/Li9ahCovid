@@ -92,6 +92,10 @@ export default class EditPatient extends Component {
     this.setState({statut: e.target.value})
   }
 
+  updateDose(e){
+    e.preventDefault()
+
+  }
 
   onSubmit(e) {
     e.preventDefault()
@@ -124,7 +128,11 @@ export default class EditPatient extends Component {
 
 
   render() {
-    return (<div className="form-wrapper">
+    return (
+    
+    
+    
+    <div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
         <Row> 
             <Col>

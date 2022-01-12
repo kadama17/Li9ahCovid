@@ -11,7 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Swal from "sweetalert2";
 
-export default class VaccinerPatient extends Component {
+export default class VaccinerFinal extends Component {
   constructor(props) {
 
     super(props);
@@ -40,20 +40,18 @@ export default class VaccinerPatient extends Component {
       statut: "",
       vaccinListe: [],
       vaccin: "",
-      rdv: ""
+      rdv: "",
+      vaccinationInfo: ""
     };
 
   }
 
-
-  componentDidUpdate(){
-    console.log(this.state.vaccin)
-  }
   componentDidMount() {
   
    
         const id = window.location.pathname.split("/")[2];
 
+  
     axios
       .get("http://127.0.0.1:8000/api/patients/" + id)
       .then((res) => {
@@ -68,12 +66,27 @@ export default class VaccinerPatient extends Component {
           sexe: res.data.sexe,
           statut: res.data.statut,
           rdv: res.data.rdv,
+          vaccinationInfo: ""
         });
       })
       .catch((error) => {
         console.log(error);
       });
 
+
+      
+      axios
+      .get("http://127.0.0.1:8000/api/vaccinationsPatient/"+id)
+      .then((res) => {
+        console.log(res)
+        this.setState({ vaccinationInfo: res.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+      
     axios
       .get("http://127.0.0.1:8000/api/vaccins")
       .then((res) => {
@@ -99,6 +112,8 @@ export default class VaccinerPatient extends Component {
 
   onChangePatientDateNaissance(e) {
     this.setState({ date_naiss: e.target.value });
+
+
   }
   onChangePatientContact(e) {
     this.setState({ contact: e.target.value });
@@ -139,26 +154,17 @@ export default class VaccinerPatient extends Component {
     date =  today.getFullYear()+'-'+  today.getMonth() + 1 + '-' + today.getDate()+"-"   ;
  
     let patientObject = {
-      id_patient: id_patient,
-      nom_vaccin: this.state.vaccin,
-      rdv: this.state.rdv,
-      date_dose_1:date,
-      dose2: ""
+  
+      date_dose_2: date
     };
     console.log(patientObject)
     axios
-      .post("http://127.0.0.1:8000/api/vaccinations/", patientObject)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-      Swal.fire(
-        "OPERATION EFFECTUEE!",
-        "Patient enregistré avec succès",
-        "success"
-      );
+      .put("http://127.0.0.1:8000/api/vaccinations/"+this.state.vaccinationInfo.id, patientObject)
+
   
 
       axios.put('http://127.0.0.1:8000/api/patients/'+id_patient, {
-        statut: "VC",
+        statut: "Vacciné",
 
       });
     // Redirect to Expense List
@@ -168,7 +174,7 @@ export default class VaccinerPatient extends Component {
   render() {
     return (
 
-      
+      this.state.statut = "VC" ? 
       <div className="form-wrapper">
         <Form onSubmit={this.onSubmit}>
           <Row>
@@ -224,57 +230,35 @@ export default class VaccinerPatient extends Component {
                 </Form.Group>
               </Col>
             </Col>
+            <Col>
+              <Form.Group controlId="CodePatient">
+                <Form.Label>Code Patient</Form.Label>
+                <Form.Control
+                  type="text"
+                  disabled="true"
+                  value={this.state.vaccinationInfo.nom_vaccin}
+                />
+              </Form.Group>
+            </Col>
           </Row>
 
-          {
-            (this.state.statut = "NV" ? (
-              <div>
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Type de vaccin
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={this.state.vaccin}
-                      label="Type de vaccin"
-                      onChange={this.handleVaccinChange}
-                    >
-                      {this.state.vaccinListe.map(function (vaccin, idx) {
-                        return (
-                          <MenuItem value={vaccin.nom_vaccin}>
-                            {vaccin.nom_vaccin}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </FormControl>
-                </Box>
+          <Col>
+              <Form.Group controlId="CodePatient">
+                <Form.Label>Code Patient</Form.Label>
+                <Form.Control
+                  type="text"
+                  disabled="true"
+                  value={this.state.vaccinationInfo.nom_vaccin}
+                />
+              </Form.Group>
+            </Col>
 
-                <Col>
-                  <Form.Group controlId="RDV">
-                    <Form.Label>RDV Prochain</Form.Label>
-                    <Form.Control
-                      type="date"
-                      value={this.state.rdv}
-                      onChange={this.onChangePatientRdv}
-                    />
-                  </Form.Group>
-                </Col>
-
-                
-          <Button variant="primary" size="lg" block="block" type="submit" onClick={this.vacciner1}>
-            Enregistrer 1er Dose
+                 
+            <Button variant="primary" size="lg" block="block" type="submit" onClick={this.onSubmit}>
+            Enregistrer 2er Dose
           </Button>
-              </div>
-            ) : (
-              ""
-            ))
-          }
-
         </Form>
-      </div>
+      </div>: " "
     );
   }
 }

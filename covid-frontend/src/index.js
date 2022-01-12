@@ -11,6 +11,7 @@ import VaccinListe from './components/vaccin/liste-vaccin.component';
 import CreateVaccin from './components/vaccin/create-vaccin.component';
 import EditVaccin from './components/vaccin/edit-vaccin.component';
 import VaccinerPatient from './components/patient/vacciner-patient.compoenent';
+import VaccinerFinal from './components/patient/vacciner-final.component';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -24,6 +25,7 @@ ReactDOM.render(
     <Route path="/edit-vaccin/:id" element={<EditVaccin />} />
     <Route path="/vacciner-patient/:id" element={<VaccinerPatient />} />
 
+    <Route path="/vacciner-final/:id" element={<VaccinerFinal />} />
 
 
   </Routes>

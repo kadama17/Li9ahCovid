@@ -1,206 +1,211 @@
 import React, { Component } from "react";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import axios from 'axios'
-import Swal from 'sweetalert2';
-import PatientListe from "./liste-patient.component";
-
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 export default class CreatePatient extends Component {
-      constructor(props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     // Setting up functions
     this.onChangePatientCode = this.onChangePatientCode.bind(this);
     this.onChangePatientNom = this.onChangePatientNom.bind(this);
     this.onChangePatientPrenom = this.onChangePatientPrenom.bind(this);
-    this.onChangePatientDateNaissance = this.onChangePatientDateNaissance.bind(this);
+    this.onChangePatientDateNaissance =
+      this.onChangePatientDateNaissance.bind(this);
     this.onChangePatientContact = this.onChangePatientContact.bind(this);
     this.onChangePatientAdresse = this.onChangePatientAdresse.bind(this);
     this.onChangePatientProfession = this.onChangePatientProfession.bind(this);
     this.onChangePatientSexe = this.onChangePatientSexe.bind(this);
-    this.onChangePatientStatut = this.onChangePatientStatut.bind(this);
 
     this.onSubmit = this.onSubmit.bind(this);
 
     // Setting up state
     this.state = {
-
-        code_patient: "",
-        nom: "",
-        prenom: "",
-        date_naiss: "",
-        contact: "",
-        adresse: "",
-        profession: "",
-        sexe: "",
-        statut: "",
-    }
+      code_patient: "",
+      nom: "",
+      prenom: "",
+      date_naiss: "",
+      contact: "",
+      adresse: "",
+      profession: "",
+      sexe: "",
+      statut: "NV",
+    };
   }
 
   onChangePatientCode(e) {
-    this.setState({code_patient: e.target.value})
+    this.setState({ code_patient: e.target.value });
   }
 
   onChangePatientNom(e) {
-    this.setState({nom: e.target.value})
+    this.setState({ nom: e.target.value });
   }
 
   onChangePatientPrenom(e) {
-    this.setState({prenom: e.target.value})
+    this.setState({ prenom: e.target.value });
   }
 
   onChangePatientDateNaissance(e) {
-    this.setState({date_naiss: e.target.value})
+    this.setState({ date_naiss: e.target.value });
   }
   onChangePatientContact(e) {
-    this.setState({contact: e.target.value})
+    this.setState({ contact: e.target.value });
   }
   onChangePatientAdresse(e) {
-    this.setState({adresse: e.target.value})
+    this.setState({ adresse: e.target.value });
   }
 
   onChangePatientProfession(e) {
-    this.setState({profession: e.target.value})
+    this.setState({ profession: e.target.value });
   }
   onChangePatientSexe(e) {
-    this.setState({sexe: e.target.value})
+    this.setState({ sexe: e.target.value });
   }
 
-  onChangePatientStatut(e) {
-    this.setState({statut: e.target.value})
-  }
-
-  
- async  onSubmit(e) {
-    e.preventDefault()
-     const patient = {
-        code_patient: this.state.code_patient,
-        nom: this.state.nom,
-        prenom: this.state.prenom,
-        date_naiss: this.state.date_naiss,
-        contact: this.state.contact,
-        adresse: this.state.adresse,
-        profession: this.state.profession,
-        sexe: this.state.sexe,
-        statut: this.state.statut,
+  async onSubmit(e) {
+    e.preventDefault();
+    const patient = {
+      code_patient: this.state.code_patient,
+      nom: this.state.nom,
+      prenom: this.state.prenom,
+      date_naiss: this.state.date_naiss,
+      contact: this.state.contact,
+      adresse: this.state.adresse,
+      profession: this.state.profession,
+      sexe: this.state.sexe,
+      statut: this.state.statut,
     };
 
-
-
-
-     await  axios.post('http://127.0.0.1:8000/api/patients/',patient)
+    await axios
+      .post("http://127.0.0.1:8000/api/patients/", patient)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
-      
 
-      
     // console.log(`Expense successfully created!`);
     // console.log(`Name: ${this.state.name}`);
     // console.log(`Amount: ${this.state.amount}`);
     // console.log(`Description: ${this.state.description}`);
     Swal.fire(
-  'OPERATION EFFECTUEE!',
-  'Patient enregistré avec succès',
-  'success'
-)
+      "OPERATION EFFECTUEE!",
+      "Patient enregistré avec succès",
+      "success"
+    );
 
-    this.setState({ code_patient: "",
-    nom: "",
-    prenom: "",
-    date_naiss: "",
-    contact: "",
-    adresse: "",
-    profession: "",
-    sexe: "",
-    statut: "",})
+    this.setState({
+      code_patient: "",
+      nom: "",
+      prenom: "",
+      date_naiss: "",
+      contact: "",
+      adresse: "",
+      profession: "",
+      sexe: "",
+      statut: "",
+    });
   }
 
   render() {
-    return (<div className="form-wrapper">
-      <Form onSubmit={this.onSubmit}>
-        <Row> 
+    return (
+      <div className="form-wrapper">
+        <Form onSubmit={this.onSubmit}>
+          <Row>
             <Col>
-             <Form.Group controlId="CodePatient">
+              <Form.Group controlId="CodePatient">
                 <Form.Label>Code Patient</Form.Label>
-                <Form.Control type="text" value={this.state.code_patient} onChange={this.onChangePatientCode}/>
-             </Form.Group>
-            
+                <Form.Control
+                  type="text"
+                  value={this.state.code_patient}
+                  onChange={this.onChangePatientCode}
+                />
+              </Form.Group>
             </Col>
 
             <Col>
-             <Form.Group controlId="Nom">
+              <Form.Group controlId="Nom">
                 <Form.Label>Nom Patien</Form.Label>
-                <Form.Control type="text" value={this.state.nom} onChange={this.onChangePatientNom}/>
-             </Form.Group>
-            
+                <Form.Control
+                  type="text"
+                  value={this.state.nom}
+                  onChange={this.onChangePatientNom}
+                />
+              </Form.Group>
             </Col>
             <Col>
-             <Form.Group controlId="Prenom">
+              <Form.Group controlId="Prenom">
                 <Form.Label>Prenom Patient</Form.Label>
-                <Form.Control type="text" value={this.state.prenom} onChange={this.onChangePatientPrenom}/>
-             </Form.Group>
-             </Col>
+                <Form.Control
+                  type="text"
+                  value={this.state.prenom}
+                  onChange={this.onChangePatientPrenom}
+                />
+              </Form.Group>
+            </Col>
 
-             <Col>
-             <Form.Group controlId="Naissance">
+            <Col>
+              <Form.Group controlId="Naissance">
                 <Form.Label>Date de Naissance Patient</Form.Label>
-                <Form.Control type="text" value={this.state.date_naiss} onChange={this.onChangePatientDateNaissance}/>
-             </Form.Group>
-            
+                <Form.Control
+                  type="text"
+                  value={this.state.date_naiss}
+                  onChange={this.onChangePatientDateNaissance}
+                />
+              </Form.Group>
             </Col>
             <Col>
-             <Form.Group controlId="Contact">
+              <Form.Group controlId="Contact">
                 <Form.Label>Contact Patient</Form.Label>
-                <Form.Control type="text" value={this.state.contact} onChange={this.onChangePatientContact}/>
-             </Form.Group>
-            
+                <Form.Control
+                  type="text"
+                  value={this.state.contact}
+                  onChange={this.onChangePatientContact}
+                />
+              </Form.Group>
             </Col>
 
             <Col>
-             <Form.Group controlId="Adresse">
+              <Form.Group controlId="Adresse">
                 <Form.Label>Adrese Patient</Form.Label>
-                <Form.Control type="text" value={this.state.adresse} onChange={this.onChangePatientAdresse}/>
-             </Form.Group>
-            
+                <Form.Control
+                  type="text"
+                  value={this.state.adresse}
+                  onChange={this.onChangePatientAdresse}
+                />
+              </Form.Group>
             </Col>
 
             <Col>
-             <Form.Group controlId="Professsion">
+              <Form.Group controlId="Professsion">
                 <Form.Label>Profession Patient</Form.Label>
-                <Form.Control type="text" value={this.state.profession} onChange={this.onChangePatientProfession}/>
-             </Form.Group>
-            
+                <Form.Control
+                  type="text"
+                  value={this.state.profession}
+                  onChange={this.onChangePatientProfession}
+                />
+              </Form.Group>
             </Col>
             <Col>
-             <Form.Group controlId="Sexe">
+              <Form.Group controlId="Sexe">
                 <Form.Label>Sexe Patient</Form.Label>
-                <Form.Control type="text" value={this.state.sexe} onChange={this.onChangePatientSexe}/>
-             </Form.Group>
-            
+                <Form.Control
+                  type="text"
+                  value={this.state.sexe}
+                  onChange={this.onChangePatientSexe}
+                />
+              </Form.Group>
             </Col>
-            <Col>
-             <Form.Group controlId="Statut">
-                <Form.Label>Statut</Form.Label>
-                <Form.Control type="text" value={this.state.statut} onChange={this.onChangePatientStatut}/>
-             </Form.Group>
-            
-            </Col>
-           
-        </Row>
-            
+          </Row>
 
-       
-        <Button variant="primary" size="lg" block="block" type="submit">
-          Add Expense
-        </Button>
-      </Form>
-      <br></br>
-      <br></br>
-
-    </div>);
+          <Button variant="primary" size="lg" block="block" type="submit">
+            Add Expense
+          </Button>
+        </Form>
+        <br></br>
+        <br></br>
+      </div>
+    );
   }
 }
-
