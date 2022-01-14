@@ -4,12 +4,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import Swal from "sweetalert2";
+import { NavBar } from "../../components/Navbard";
 
 export default class VaccinerFinal extends Component {
   constructor(props) {
@@ -175,6 +170,9 @@ export default class VaccinerFinal extends Component {
     return (
 
       this.state.statut = "VC" ? 
+
+      <div>
+      <NavBar/>
       <div className="form-wrapper">
         <Form onSubmit={this.onSubmit}>
           <Row>
@@ -258,7 +256,9 @@ export default class VaccinerFinal extends Component {
             Enregistrer 2er Dose
           </Button>
         </Form>
-      </div>: " "
+      </div>
+      </div>
+      : " "
     );
   }
 }

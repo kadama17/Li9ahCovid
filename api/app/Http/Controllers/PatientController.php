@@ -66,6 +66,13 @@ class PatientController extends Controller
         return response()->json($patients);
     }
 
+    public function showByCode($code_patient)
+    {
+         $patient = Patient::where('code_patient',$code_patient)->first();
+        return response()->json($patient);
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *

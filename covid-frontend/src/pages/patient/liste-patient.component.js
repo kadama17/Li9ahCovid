@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import TablePatient from "./TablePatient";
+import { NavBar } from "../../components/Navbard";
 
 export default class PatientListe extends Component {
 
@@ -32,7 +33,12 @@ export default class PatientListe extends Component {
 
 
   render() {
-    return (<div className="table-wrapper">
+    return (
+    <div>
+<NavBar/>
+
+
+    <div className="table-wrapper">
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -53,6 +59,9 @@ export default class PatientListe extends Component {
           {this.DataTable()}
         </tbody>
       </Table>
-    </div>);
+    </div>
+    </div>
+);
+    
   }
 }

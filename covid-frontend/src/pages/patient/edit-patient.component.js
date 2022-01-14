@@ -5,6 +5,7 @@ import axios from 'axios';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useParams } from "react-router-dom";
+import { NavBar } from "../../components/Navbard";
 
 export default class EditPatient extends Component {
 
@@ -130,7 +131,9 @@ export default class EditPatient extends Component {
   render() {
     return (
     
-    
+      <div>
+      <NavBar/>
+      
     
     <div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
@@ -203,6 +206,9 @@ export default class EditPatient extends Component {
           Add Expense
         </Button>
       </Form>
-    </div>);
+    </div>
+    
+    </div>
+    );
   }
 }

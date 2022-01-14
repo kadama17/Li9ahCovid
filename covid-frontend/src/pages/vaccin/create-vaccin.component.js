@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios'
 import Swal from 'sweetalert2';
+import { NavBar } from "../../components/Navbard";
 
 
 export default class CreateVaccin extends Component {
@@ -102,16 +103,17 @@ export default class CreateVaccin extends Component {
   }
 
   render() {
-    return (<div className="form-wrapper">
+    return (
+      <div>
+      <NavBar/>
+    <div className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
-        <Row> 
-            <Col>
+  
              <Form.Group controlId="CodeVaccin">
                 <Form.Label>Code Vaccin</Form.Label>
                 <Form.Control type="text" value={this.state.code_vaccin} onChange={this.onChangeVaccinCode}/>
              </Form.Group>
             
-            </Col>
 
             <Col>
             <Form.Group controlId="NomVaccin">
@@ -151,7 +153,6 @@ export default class CreateVaccin extends Component {
             </Col>
 
           
-        </Row>
             
 
        
@@ -162,6 +163,7 @@ export default class CreateVaccin extends Component {
       <br></br>
       <br></br>
 
+    </div>
     </div>);
   }
 }

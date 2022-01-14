@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
 import axios from "axios";
 import Swal from "sweetalert2";
+import { NavBar } from "../../components/Navbard";
+import { Button, Col, Form, Row} from "react-bootstrap";
 
 export default class CreatePatient extends Component {
   constructor(props) {
@@ -110,7 +109,9 @@ export default class CreatePatient extends Component {
 
   render() {
     return (
-      <div className="form-wrapper">
+      <div>
+<NavBar/>
+<div className="form-wrapper">
         <Form onSubmit={this.onSubmit}>
           <Row>
             <Col>
@@ -206,6 +207,9 @@ export default class CreatePatient extends Component {
         <br></br>
         <br></br>
       </div>
-    );
+
+
+      </div>
+         );
   }
 }

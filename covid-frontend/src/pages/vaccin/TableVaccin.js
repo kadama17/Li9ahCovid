@@ -32,7 +32,7 @@ export default class TableVaccin extends Component {
                     <Link className="edit-link" to={"/edit-vaccin/" + this.props.obj.id}>
                        <Button size="sm" variant="info">Modifier</Button>
                     </Link>
-                    <Button onClick={this.deleteVaccin} size="sm" variant="danger">Supprimer</Button>
+                    <Button onClick={this.deleteVaccins} size="sm" variant="danger">Supprimer</Button>
                 </td>
             </tr>
         );

@@ -4,8 +4,8 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useParams } from "react-router-dom";
-
+import { NavBar } from "../../components/Navbard";
+  
 export default class EditVaccin extends Component {
   constructor(props) {
     super(props);
@@ -24,37 +24,40 @@ export default class EditVaccin extends Component {
       description: "",
       quantite: "",
       date_exp: "",
-      nbre_dose: "",
+      nbr_dose: "",
     };
   }
+  
 
   componentDidMount() {
     const id = window.location.pathname.split("/")[2];
-    console.log(id);
 
     axios
       .get("http://127.0.0.1:8000/api/vaccins/" + id)
       .then((res) => {
+
         this.setState({
-          code_vaccin: this.state.code_vaccin,
-          nom_vaccin: this.state.nom_vaccin,
-          description: this.state.description,
-          quantite: this.state.quantite,
-          date_exp: this.state.date_exp,
-          nbre_dose: this.state.nbre_dose,
+          code_vaccin:res.data.code_vaccin,
+          nom_vaccin: res.data.nom_vaccin,
+          description:res.data.description,
+          quantite: res.data.quantite,
+          date_exp: res.data.date_exp,
+          nbr_dose: res.data.nbr_dose,
         });
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+
+  
+    }
 
   onChangeVaccinCode(e) {
     this.setState({code_vaccin: e.target.value})
   }
 
   onChangeVaccinNom(e) {
-    this.setState({vaccin_nom: e.target.value})
+    this.setState({nom_vaccin: e.target.value})
   }
 
   onChangeDescription(e) {
@@ -68,7 +71,7 @@ export default class EditVaccin extends Component {
     this.setState({date_exp: e.target.value})
   }
   onChangeNbreDose(e) {
-    this.setState({nbre_dose: e.target.value})
+    this.setState({nbr_dose: e.target.value})
   }
 
  
@@ -81,7 +84,7 @@ export default class EditVaccin extends Component {
       description:  this.state.description,
       quantite:  this.state.quantite,
       date_exp:  this.state.date_exp,
-      nbre_dose:  this.state.nbre_dose
+      nbr_dose:  this.state.nbr_dose
     };
     const id = window.location.pathname.split("/")[2];
     console.log(id);
@@ -102,9 +105,13 @@ export default class EditVaccin extends Component {
 
   render() {
     return (
+      <div>
+      <NavBar/>
       <div className="form-wrapper">
        <Form onSubmit={this.onSubmit}>
         <Row> 
+
+          
             <Col>
              <Form.Group controlId="CodeVaccin">
                 <Form.Label>Code Vaccin</Form.Label>
@@ -137,7 +144,7 @@ export default class EditVaccin extends Component {
             <Col>
              <Form.Group controlId="DateExp">
                 <Form.Label>Date Expiration vaccin</Form.Label>
-                <Form.Control type="text" value={this.state.date_exp} onChange={this.onChangeDateExp}/>
+                <Form.Control type="date" value={this.state.date_exp} onChange={this.onChangeDateExp}/>
              </Form.Group>
             
             </Col>
@@ -145,32 +152,13 @@ export default class EditVaccin extends Component {
             <Col>
              <Form.Group controlId="NbreDose">
                 <Form.Label>Nombre de dose par personnes</Form.Label>
-                <Form.Control type="number" value={this.state.nbre_dose} onChange={this.onChangeNbreDose}/>
+                <Form.Control type="number" value={this.state.nbr_dose} onChange={this.onChangeNbreDose}/>
              </Form.Group>
             
             </Col>
 
-            <Col>
-             <Form.Group controlId="Professsion">
-                <Form.Label>Profession Patient</Form.Label>
-                <Form.Control type="text" value={this.state.profession} onChange={this.onChangePatientProfession}/>
-             </Form.Group>
-            
-            </Col>
-            <Col>
-             <Form.Group controlId="Sexe">
-                <Form.Label>Sexe Patient</Form.Label>
-                <Form.Control type="text" value={this.state.sexe} onChange={this.onChangePatientSexe}/>
-             </Form.Group>
-            
-            </Col>
-            <Col>
-             <Form.Group controlId="Statut">
-                <Form.Label>Statut</Form.Label>
-                <Form.Control type="text" value={this.state.statut} onChange={this.onChangePatientStatut}/>
-             </Form.Group>
-            
-            </Col>
+   
+          
            
         </Row>
             
@@ -180,6 +168,7 @@ export default class EditVaccin extends Component {
           Add Expense
         </Button>
       </Form>
+      </div>
       </div>
     );
   }

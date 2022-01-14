@@ -85,12 +85,12 @@ class VaccinController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'code_vaccin' => 'required',
-            'nom_vaccin' => 'required',
-            'description' => 'required',
-            'quantite' => 'required',
-            'date_exp' => 'required',
-            'nbre_dose' => 'required',
+            'code_vaccin' => '',
+            'nom_vaccin' => '',
+            'description' => '',
+            'quantite' => '',
+            'date_exp' => '',
+            'nbre_dose' => '',
           
         ]);
 

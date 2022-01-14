@@ -10,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Swal from "sweetalert2";
+import { NavBar } from "../../components/Navbard";
 
 export default class VaccinerPatient extends Component {
   constructor(props) {
@@ -168,7 +169,8 @@ export default class VaccinerPatient extends Component {
   render() {
     return (
 
-      
+      <div>
+      <NavBar/>
       <div className="form-wrapper">
         <Form onSubmit={this.onSubmit}>
           <Row>
@@ -275,6 +277,8 @@ export default class VaccinerPatient extends Component {
 
         </Form>
       </div>
+      </div>
+
     );
   }
 }

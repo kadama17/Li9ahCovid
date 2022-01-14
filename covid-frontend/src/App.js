@@ -1,7 +1,6 @@
 import React from "react";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
+import { Navbar, Nav, Container } from 'react-bootstrap';
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.css";
@@ -9,15 +8,15 @@ import "./App.css";
 
 import { BrowserRouter as Router, Switch, Route, Link, BrowserRouter, Routes } from "react-router-dom";
 
-import CreatePatient from "./components/patient/create-patient.component";
-import EditPatient from "./components/patient/edit-patient.component";
-import PatientListe from "./components/patient/liste-patient.component";
+import CreatePatient from "./pages/patient/create-patient.component";
+import EditPatient from "./pages/patient/edit-patient.component";
+import PatientListe from "./pages/patient/liste-patient.component";
 
 function App() {
   return (
       <div className="App">
         <header className="App-header">
-          <Navbar bg="success" variant="success">ddkdjkj
+          <Navbar bg="success" variant="success">
             <Container>
               <Navbar.Brand>
                 <Link to={"/create-patient"} className="nav-link">
