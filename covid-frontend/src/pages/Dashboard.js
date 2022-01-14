@@ -1,24 +1,13 @@
 import React from "react";
 import { Navbar, Nav, Container, Card, Button } from 'react-bootstrap';
+import { NavBar } from "../components/Navbard";
 
 export function Dashboard() {
   return (
 
 <>
-  <Navbar bg="dark" variant="dark">
-    <Container>
-    <Navbar.Brand href="#home">Li9ha Covid</Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="#home">Patient</Nav.Link>
-      <Nav.Link href="#features">Vaccin</Nav.Link>
-      <Nav.Link href="#pricing">vaccination</Nav.Link>
-    </Nav>
-    <div>
-        <button style={{  background: "#00b5ad"  }}>Logout</button>
-        </div>
-    </Container>
-  </Navbar>
-  <br />
+<NavBar/>
+
  <div>
  <Card style={{ marginTop:"30px", float: 'left', width: '20rem', marginLeft: "10px", marginRight: "92px" }}>
   <Card.Img variant="top" src="images/vaccination.png" />

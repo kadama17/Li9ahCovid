@@ -29,7 +29,7 @@ export class Login extends React.Component {
       {
           console.log(res.data)
       //Success alert
-      if(res.data.success === false)
+      if(res.data.success == false)
       {
 
         Swal.fire({
@@ -41,7 +41,7 @@ export class Login extends React.Component {
       }
       else
       {
-        window.sessionStorage.setItem("user", JSON.stringify(res.data.data))
+        window.localStorage.setItem("user", JSON.stringify(res.data.data))
 
         Swal.fire({
         title: 'Connexion reussi!',
@@ -66,7 +66,7 @@ export class Login extends React.Component {
         
         
         <div className="container p-5">
-        <h1 className="text-center mb-5">Jassa therichpost</h1>
+        <h1 className="text-center mb-5">Page de connexion</h1>
         <form ref={(el) => this.myFormRef = el}>
         <div class="mb-3">
           <label for="exampleFormControlInput2" class="form-label">Enter Email</label>

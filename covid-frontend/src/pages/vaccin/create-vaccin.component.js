@@ -106,37 +106,39 @@ export default class CreateVaccin extends Component {
     return (
       <div>
       <NavBar/>
-    <div className="form-wrapper">
+    <div style={{marginLeft:"15%"}} className="form-wrapper">
       <Form onSubmit={this.onSubmit}>
-  
-             <Form.Group controlId="CodeVaccin">
+      <Row>
+            <Col md={5} sm={6}>
+             <Form.Group  controlId="CodeVaccin">
                 <Form.Label>Code Vaccin</Form.Label>
                 <Form.Control type="text" value={this.state.code_vaccin} onChange={this.onChangeVaccinCode}/>
              </Form.Group>
-            
+             </Col>
 
-            <Col>
+
+             <Col md={5} sm={6}>
             <Form.Group controlId="NomVaccin">
                 <Form.Label>Nom Vaccin</Form.Label>
                 <Form.Control type="text" value={this.state.nom_vaccin} onChange={this.onChangeVaccinNom}/>
              </Form.Group>
             
             </Col>
-            <Col>
+            <Col md={5} sm={6}>
              <Form.Group controlId="Description">
                 <Form.Label>Description</Form.Label>
                 <Form.Control type="text" value={this.state.description} onChange={this.onChangeDescription}/>
              </Form.Group>
              </Col>
 
-             <Col>
+             <Col md={5} sm={6}>
              <Form.Group controlId="Quantite">
                 <Form.Label>Quantite</Form.Label>
                 <Form.Control type="number" value={this.state.quantite} onChange={this.onChangeQuantite}/>
              </Form.Group>
             
             </Col>
-            <Col>
+            <Col md={5} sm={6}>
              <Form.Group controlId="DateExp">
                 <Form.Label>Date Expiration vaccin</Form.Label>
                 <Form.Control type="date" value={this.state.date_exp} onChange={this.onChangeDateExp}/>
@@ -144,13 +146,14 @@ export default class CreateVaccin extends Component {
             
             </Col>
 
-            <Col>
+            <Col md={5} sm={6}>
              <Form.Group controlId="NbrDose">
                 <Form.Label>Nombre de dose par personnes</Form.Label>
                 <Form.Control type="number" value={this.state.nbr_dose} onChange={this.onChangeNbrDose}/>
              </Form.Group>
             
             </Col>
+            </Row>
 
           
             

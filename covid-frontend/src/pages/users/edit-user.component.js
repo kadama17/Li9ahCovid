@@ -36,18 +36,20 @@ export default class EditUser extends Component {
     console.log(id);
 
     axios
-      .get("http://127.0.0.1:8000/api/patients/" + id)
+      .get("http://127.0.0.1:8000/api/users/" + id)
       .then((res) => {
+        console.log(res)
         this.setState({
           code_patient: res.data.code_patient,
-          nom: res.data.nom,
-          prenom: res.data.prenom,
-          date_naiss: res.data.date_naiss,
+          nom: res.data.name,
+          date_naiss: res.data.date_naissance,
           contact: res.data.contact,
           adresse: res.data.adresse,
-          profession: res.data.profession,
           sexe: res.data.sexe,
-          statut: res.data.statut,
+         
+          matricule: res.data.matricule,
+          email: res.data.email,
+          type: res.data.type
         });
       })
       .catch((error) => {
@@ -115,10 +117,11 @@ export default class EditUser extends Component {
 
 
       <NavBar/>
-      <div className="form-wrapper">
-        <Form onSubmit={this.onSubmit}>
-          <Row>
-            <Col>
+  
+      <div style={{ marginLeft: "15%" }} className="form-wrapper">
+          <Form onSubmit={this.onSubmit}>
+            <Row>
+              <Col md={5} sm={6}>
               <Form.Group controlId="MatUser">
                 <Form.Label>Matricule Personnel</Form.Label>
                 <Form.Control
@@ -129,7 +132,7 @@ export default class EditUser extends Component {
               </Form.Group>
             </Col>
 
-            <Col>
+            <Col md={5} sm={6}>
               <Form.Group controlId="NomUser">
                 <Form.Label>Nom & Prenom Personnel</Form.Label>
                 <Form.Control
@@ -139,7 +142,7 @@ export default class EditUser extends Component {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col md={5} sm={6}>
               <Form.Group controlId="DateNaissance">
                 <Form.Label>Date de Naissance</Form.Label>
                 <Form.Control
@@ -150,7 +153,7 @@ export default class EditUser extends Component {
               </Form.Group>
             </Col>
 
-            <Col>
+            <Col md={5} sm={6}>
               <Form.Group controlId="Email">
                 <Form.Label>Email Patient</Form.Label>
                 <Form.Control
@@ -160,7 +163,7 @@ export default class EditUser extends Component {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col md={5} sm={6}>
               <Form.Group controlId="Type">
                 <Form.Label>Mot de passe</Form.Label>
                 <Form.Control
@@ -171,7 +174,7 @@ export default class EditUser extends Component {
               </Form.Group>
             </Col>
 
-            <Col>
+            <Col md={5} sm={6}>
               <Form.Group controlId="Adresse">
                 <Form.Label>Type de compte</Form.Label>
                 <Form.Control
@@ -182,7 +185,7 @@ export default class EditUser extends Component {
               </Form.Group>
             </Col>
 
-            <Col>
+            <Col md={5} sm={6}>
               <Form.Group controlId="UserSexe">
                 <Form.Label>Sexe</Form.Label>
                 <Form.Control

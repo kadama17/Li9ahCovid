@@ -14,9 +14,9 @@ export default class TableUser extends Component {
 
   deleteUser() {
     axios
-      .delete("http://localhost:8000/api/user/" + this.props.obj.id)
+      .delete("http://localhost:8000/api/users/" + this.props.obj.id)
       .then((res) => {
-        console.log("Expense removed deleted!");
+        console.log("Personnel supprimé!");
       })
       .catch((error) => {
         console.log(error);
@@ -37,34 +37,8 @@ export default class TableUser extends Component {
               Modifier
             </Button>
           </Link>
-          {
-            (this.props.obj.statut === "VC" ? (
-              <Link
-                className="edit-link"
-                to={"/vacciner-final/" + this.props.obj.id}
-              >
-                <Button size="sm" variant="info">
-                  2ème dose
-                </Button>
-              </Link>
-            ) : 
-            this.props.obj.statut==="NV"?
-            
-            (
-              <Link
-                className="edit-link"
-                to={"/vacciner-patient/" + this.props.obj.id}
-              >
-                <Button size="sm" variant="warning">
-                  1ère dose
-                </Button>
-              </Link>
-            ) : ""
-            )            
-
-          }
-
-          {/* <Button onClick={this.deletePatient} size="sm" variant="danger">Supprimer</Button> */}
+      
+         <Button onClick={this.deleteUser} size="sm" variant="danger">Supprimer</Button> 
         </td>
       </tr>
     );

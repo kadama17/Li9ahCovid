@@ -106,13 +106,13 @@ export default class CreateUser extends Component {
 
 
       <NavBar/>
-      <div className="form-wrapper">
-        <Form onSubmit={this.onSubmit}>
+      <div  style={{marginLeft:"15%"}} className="form-wrapper">
+        <Form  onSubmit={this.onSubmit}>
           <Row>
-            <Col>
-              <Form.Group controlId="MatUser">
+            <Col md={5} sm={6}>
+              <Form.Group  controlId="MatUser">
                 <Form.Label>Matricule Personnel</Form.Label>
-                <Form.Control
+                <Form.Control 
                   type="text"
                   value={this.state.matricule}
                   onChange={this.onChangeUserMatricule}
@@ -120,7 +120,7 @@ export default class CreateUser extends Component {
               </Form.Group>
             </Col>
 
-            <Col>
+            <Col md={5}>
               <Form.Group controlId="NomUser">
                 <Form.Label>Nom & Prenom Personnel</Form.Label>
                 <Form.Control
@@ -130,7 +130,7 @@ export default class CreateUser extends Component {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col md={5}>
               <Form.Group controlId="DateNaissance">
                 <Form.Label>Date de Naissance</Form.Label>
                 <Form.Control
@@ -141,7 +141,7 @@ export default class CreateUser extends Component {
               </Form.Group>
             </Col>
 
-            <Col>
+            <Col md={5}>
               <Form.Group controlId="Email">
                 <Form.Label>Email Patient</Form.Label>
                 <Form.Control
@@ -151,7 +151,7 @@ export default class CreateUser extends Component {
                 />
               </Form.Group>
             </Col>
-            <Col>
+            <Col md={5}>
               <Form.Group controlId="Type">
                 <Form.Label>Mot de passe</Form.Label>
                 <Form.Control
@@ -162,7 +162,7 @@ export default class CreateUser extends Component {
               </Form.Group>
             </Col>
 
-            <Col>
+            <Col md={5}>
               <Form.Group controlId="Adresse">
                 <Form.Label>Type de compte</Form.Label>
                 <Form.Control
@@ -173,7 +173,7 @@ export default class CreateUser extends Component {
               </Form.Group>
             </Col>
 
-            <Col>
+            <Col md={5}>
               <Form.Group controlId="UserSexe">
                 <Form.Label>Sexe</Form.Label>
                 <Form.Control

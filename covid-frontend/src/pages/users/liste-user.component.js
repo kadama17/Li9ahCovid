@@ -45,7 +45,7 @@ export default class UserListe extends Component {
             <th>Nom&Prenom</th>
             <th>Date de Naissance</th>
             <th>Sexe</th>
-            <th>Type</th>
+            <th>Type de compte </th>
           </tr>
         </thead>
         <tbody>

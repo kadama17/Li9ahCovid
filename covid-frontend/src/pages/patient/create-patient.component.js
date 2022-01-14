@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { NavBar } from "../../components/Navbard";
-import { Button, Col, Form, Row} from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 export default class CreatePatient extends Component {
   constructor(props) {
@@ -110,106 +110,104 @@ export default class CreatePatient extends Component {
   render() {
     return (
       <div>
-<NavBar/>
-<div className="form-wrapper">
-        <Form onSubmit={this.onSubmit}>
-          <Row>
-            <Col>
-              <Form.Group controlId="CodePatient">
-                <Form.Label>Code Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.code_patient}
-                  onChange={this.onChangePatientCode}
-                />
-              </Form.Group>
-            </Col>
+        <NavBar />{" "}
+        <div style={{ marginLeft: "15%" }} className="form-wrapper">
+          <Form onSubmit={this.onSubmit}>
+            <Row>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="CodePatient">
+                  <Form.Label>Code Patient</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.code_patient}
+                    onChange={this.onChangePatientCode}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Col>
-              <Form.Group controlId="Nom">
-                <Form.Label>Nom Patien</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.nom}
-                  onChange={this.onChangePatientNom}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group controlId="Prenom">
-                <Form.Label>Prenom Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.prenom}
-                  onChange={this.onChangePatientPrenom}
-                />
-              </Form.Group>
-            </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Nom">
+                  <Form.Label>Nom Patien</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.nom}
+                    onChange={this.onChangePatientNom}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Prenom">
+                  <Form.Label>Prenom Patient</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.prenom}
+                    onChange={this.onChangePatientPrenom}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Col>
-              <Form.Group controlId="Naissance">
-                <Form.Label>Date de Naissance Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.date_naiss}
-                  onChange={this.onChangePatientDateNaissance}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group controlId="Contact">
-                <Form.Label>Contact Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.contact}
-                  onChange={this.onChangePatientContact}
-                />
-              </Form.Group>
-            </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Naissance">
+                  <Form.Label>Date de Naissance Patient</Form.Label>
+                  <Form.Control
+                    type="date"
+                    value={this.state.date_naiss}
+                    onChange={this.onChangePatientDateNaissance}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Contact">
+                  <Form.Label>Contact Patient</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.contact}
+                    onChange={this.onChangePatientContact}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Col>
-              <Form.Group controlId="Adresse">
-                <Form.Label>Adrese Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.adresse}
-                  onChange={this.onChangePatientAdresse}
-                />
-              </Form.Group>
-            </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Adresse">
+                  <Form.Label>Adresse Patient</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.adresse}
+                    onChange={this.onChangePatientAdresse}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Col>
-              <Form.Group controlId="Professsion">
-                <Form.Label>Profession Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.profession}
-                  onChange={this.onChangePatientProfession}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group controlId="Sexe">
-                <Form.Label>Sexe Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.sexe}
-                  onChange={this.onChangePatientSexe}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Professsion">
+                  <Form.Label>Profession Patient</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.profession}
+                    onChange={this.onChangePatientProfession}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Sexe">
+                  <Form.Label>Sexe Patient</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.sexe}
+                    onChange={this.onChangePatientSexe}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-          <Button variant="primary" size="lg" block="block" type="submit">
-            Add Expense
-          </Button>
-        </Form>
-        <br></br>
-        <br></br>
+            <Button variant="primary" size="lg" block="block" type="submit">
+              Add Expense
+            </Button>
+          </Form>
+          <br></br>
+          <br></br>
+        </div>
       </div>
-
-
-      </div>
-         );
+    );
   }
 }

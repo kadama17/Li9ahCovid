@@ -69,3 +69,4 @@ Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::post('/login', [UserController::class, 'login'])->name('users.login');
+Route::delete('/logout', [UserController::class, 'logout'])->name('users.logout');

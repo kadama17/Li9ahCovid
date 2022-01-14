@@ -140,4 +140,13 @@ class UserController extends Controller
             'message' => 'vaccin supprimé'
         ]);
     }
+
+
+    public function logout()
+    {
+        auth()->logout();
+        return response()->json([
+            'message' => 'utilisateur déconnecté'
+        ]);
+    }
 }
