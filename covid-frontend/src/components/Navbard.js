@@ -21,11 +21,11 @@ export class NavBar extends React.Component {
       <>
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">Li9ha Covid</Navbar.Brand>
+            <Navbar.Brand href="/dashboard">Li9ha Covid</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Patienst</Nav.Link>
-              <Nav.Link href="#features">Vaccin</Nav.Link>
-              <Nav.Link href="#pricing">vaccination</Nav.Link>
+              <Nav.Link href="/patient-list">Patient</Nav.Link>
+              <Nav.Link href="vaccin-list">Vaccin</Nav.Link>
+              <Nav.Link href="">vaccination</Nav.Link>
             </Nav>
             <button onClick={this.logout} style={{ background: "#00b5ad" }}>
               Logout

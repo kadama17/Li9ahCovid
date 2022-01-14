@@ -1,5 +1,4 @@
-import React from "react";
-import { Navbar, Nav, Container, Card, Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { NavBar } from "../components/Navbard";
 
 export function Dashboard() {
