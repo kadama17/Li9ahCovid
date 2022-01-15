@@ -201,7 +201,7 @@ export default class CreatePatient extends Component {
             </Row>
 
             <Button variant="primary" size="lg" block="block" type="submit">
-              Add Expense
+              Ajouter le patient
             </Button>
           </Form>
           <br></br>

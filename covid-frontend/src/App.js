@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { Login } from "./pages/auth/login-component";
-import { Dashboard } from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import PassVaccinal from "./pages/passvaccinal/form-passvaccinal.component";
 import PrintVaccinal from "./pages/passvaccinal/print-passvaccinal.component";
 import CreatePatient from "./pages/patient/create-patient.component";
@@ -16,6 +16,9 @@ import EditPatient from "./pages/patient/edit-patient.component";
 import PatientListe from "./pages/patient/liste-patient.component";
 import VaccinerFinal from "./pages/patient/vacciner-final.component";
 import VaccinerPatient from "./pages/patient/vacciner-patient.compoenent";
+import CreateUser from "./pages/users/create-user.component";
+import EditUser from "./pages/users/edit-user.component";
+import UserListe from "./pages/users/liste-user.component";
 import CreateVaccin from "./pages/vaccin/create-vaccin.component";
 import EditVaccin from "./pages/vaccin/edit-vaccin.component";
 import VaccinListe from "./pages/vaccin/liste-vaccin.component";
@@ -62,9 +65,9 @@ const AdminRoute = (
     <Route path="/form-pass" element={<PassVaccinal />} />
     <Route path="/print-pass" element={<PrintVaccinal />} />
     <Route path="*" element={<Navigate to="/dashboard" />} />
-    <Route path="create-vaccin" element={<CreateVaccin />} />
-    <Route path="vaccin-list" element={<VaccinListe />} />
-    <Route path="/edit-vaccin/:id" element={<EditVaccin />} />
+    <Route path="create-user" element={<CreateUser />} />
+    <Route path="user-list" element={<UserListe />} />
+    <Route path="/edit-user/:id" element={<EditUser />} />
     <Route path="/vacciner-patient/:id" element={<VaccinerPatient />} />
   </>
 );

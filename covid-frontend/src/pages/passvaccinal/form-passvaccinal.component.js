@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import axios from "axios";
+import React, { Component } from "react";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import "./form-passvaccinal.css";
 
 export default class PassVaccinal extends Component {
   constructor(props) {
@@ -11,13 +12,15 @@ export default class PassVaccinal extends Component {
 
     // Setting up functions
     this.onChangePatientCode = this.onChangePatientCode.bind(this);
-   
+
     this.onSubmit = this.onSubmit.bind(this);
 
     // Setting up state
     this.state = {
       code_patient: "",
-     
+      isData: false,
+      success: false,
+      message: "",
     };
   }
 
@@ -27,65 +30,80 @@ export default class PassVaccinal extends Component {
 
   async onSubmit(e) {
     e.preventDefault();
-    const patient = {
-      code_patient: this.state.code_patient,
-    };
 
     await axios
       .get("http://127.0.0.1:8000/api/patientsCode/" + this.state.code_patient)
-      .then((res) =>{
-        this.setState({patient: res.data})
-        window.sessionStorage.setItem("patient", JSON.stringify(res.data));
-        console.log(res.data)
-        if(res.data){
-          this.setState({isData: true})
-          console.log("data")
+      .then((res) => {
+        if (res.data.success == true) {
+          this.setState({
+            isData: true,
+            success: res.data.success,
+            message: res.data.message,
+          });
+
+          window.sessionStorage.setItem("pass", JSON.stringify(res.data.data));
+        } else {
+          this.setState({
+            isData: false,
+            success: res.data.success,
+            message: res.data.message,
+          });
         }
-      }
-      
-      )
+      })
       .catch((err) => console.log(err));
-
-  
-   
-
-    this.setState({
-      code_patient: "",
-     
-    });
   }
 
   render() {
-    return (      
+    return (
+      <div
+        className="form-wrapper"
+        style={{ background: `url("images/covid-background.jpg")` }}
+      >
+        <div className="card card-5">
+          <Form onSubmit={this.onSubmit}>
+            <Row>
+              <Col md={6}>
+                <Form.Group controlId="CodePatient">
+                  <Form.Label>
+                    Plateforme de délivrance de l'Attestation de Vaccination
+                    CORONAVIRUS (COVID-19) Entrez votre code patient
+                  </Form.Label>
+                  <Form.Control
+                    placeholder="Code patient"
+                    type="text"
+                    value={this.state.code_patient}
+                    onChange={this.onChangePatientCode}
+                  />
+                </Form.Group>
+                <br />
+                <br />
+                {this.state.success == true ? (
+                  <>
+                    <p style={{ color: "green" }}>{this.state.message}</p>
+                    <Button
+                      variant="success"
+                      size="lg"
+                      block="block"
+                      type="submit"
+                      href="/print-pass"
+                    >
+                      Voir
+                    </Button>
 
-      this.state.isData=== true  ? 
-      <div>
-        <a href="/print-pass">
-          Imprimer. 
-        </a>
+                    <a href="/print-pass">d</a>
+                  </>
+                ) : (
+                  <>
+                    <p style={{ color: "red" }}>{this.state.message}</p>
+                  </>
+                )}
+                <Button variant="primary" size="lg" block="block" type="submit">
+                  Valider
+                </Button>
+              </Col>
+            </Row>
+          </Form>
         </div>
-      : 
-
-      <div className="form-wrapper">
-        <Form onSubmit={this.onSubmit}>
-          <Row>
-            <Col>
-              <Form.Group controlId="CodePatient">
-                <Form.Label>Code Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.code_patient}
-                  onChange={this.onChangePatientCode}
-                />
-              </Form.Group>
-            </Col>
-
-          </Row>
-          <h1 onClick={this.onSubmit}>test</h1>
-          <Button variant="primary" size="lg" block="block" type="submit">
-            Add Expense
-          </Button>
-        </Form>
 
         <br></br>
         <br></br>

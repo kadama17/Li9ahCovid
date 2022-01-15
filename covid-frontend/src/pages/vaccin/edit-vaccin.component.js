@@ -160,7 +160,7 @@ export default class EditVaccin extends Component {
               </Col>
 
               <Col md={5} sm={6}>
-                <Form.Group controlId="NbreDose">
+                  <Form.Group controlId="NbreDose">
                   <Form.Label>Nombre de dose par personnes</Form.Label>
                   <Form.Control
                     type="number"

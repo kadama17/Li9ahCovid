@@ -68,8 +68,21 @@ class PatientController extends Controller
 
     public function showByCode($code_patient)
     {
-         $patient = Patient::where('code_patient',$code_patient)->first();
-        return response()->json($patient);
+        $patient = Patient::where('code_patient', $code_patient)->first();
+        if (!$patient) {
+            return response()->json([
+                'message' => "Pass Vaccinal pas trouvée",
+                'success' => false
+            ], 200);
+        }
+        return response()->json(
+            [
+                'message' => "Pass Vaccinal disponible",
+                'success' => true,
+                'data' => $patient
+
+            ]
+        );
     }
 
 
@@ -114,7 +127,6 @@ class PatientController extends Controller
             'message' => 'patient misa à jour!'
         ]);
         return redirect('/');
-
     }
 
 

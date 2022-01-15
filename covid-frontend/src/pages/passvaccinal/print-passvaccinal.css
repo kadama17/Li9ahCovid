@@ -1,0 +1,16 @@
+.card-print {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 500px;
+  margin: 500px;
+  position: relative;
+  width: 700px;
+  border-radius: 20px;
+  padding: 26px;
+}
+
+.card-print-5 {
+  margin: 167px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}

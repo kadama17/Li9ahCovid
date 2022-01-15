@@ -1,10 +1,13 @@
 import axios from "axios";
 import React from "react";
-import { Navbar, Nav, Container, Card, Button } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 export class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      role: JSON.parse(window.localStorage.getItem("user")).type,
+    };
   }
 
   logout(e) {
@@ -22,11 +25,11 @@ export class NavBar extends React.Component {
         <Navbar bg="dark" variant="dark">
           <Container>
             <Navbar.Brand href="/dashboard">Li9ha Covid</Navbar.Brand>
-            <Nav className="me-auto">
+            {/* <Nav className="me-auto">
               <Nav.Link href="/patient-list">Patient</Nav.Link>
               <Nav.Link href="vaccin-list">Vaccin</Nav.Link>
               <Nav.Link href="">vaccination</Nav.Link>
-            </Nav>
+            </Nav> */}
             <button onClick={this.logout} style={{ background: "#00b5ad" }}>
               Logout
             </button>
