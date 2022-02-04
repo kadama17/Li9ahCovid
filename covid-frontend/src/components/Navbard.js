@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import './Navbard.css';
 import { Navbar, Nav, Container } from "react-bootstrap";
 
 export class NavBar extends React.Component {
@@ -24,7 +25,7 @@ export class NavBar extends React.Component {
       <>
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="/dashboard">Li9ha Covid</Navbar.Brand>
+            <Navbar.Brand href="/dashboard"><img src='images/vaccine.png' height="50" className="Logo"/>Li9ah Covid</Navbar.Brand>
             {/* <Nav className="me-auto">
               <Nav.Link href="/patient-list">Patient</Nav.Link>
               <Nav.Link href="vaccin-list">Vaccin</Nav.Link>
