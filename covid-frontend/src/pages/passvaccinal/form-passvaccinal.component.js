@@ -89,8 +89,6 @@ export default class PassVaccinal extends Component {
                     >
                       Voir
                     </Button>
-
-                    <a href="/print-pass">d</a>
                   </>
                 ) : (
                   <>
