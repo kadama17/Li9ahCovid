@@ -1,0 +1,9 @@
+.Card-Dashboard {
+  margin: 10px;
+  width: 20rem;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+}

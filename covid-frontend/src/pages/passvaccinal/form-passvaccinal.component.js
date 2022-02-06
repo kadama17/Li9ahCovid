@@ -59,7 +59,7 @@ export default class PassVaccinal extends Component {
         className="form-wrapper"
         style={{ background: `url("images/covid-background.jpg")` }}
       >
-        <div className="card card-5">
+        <div className="card-pass card-5">
           <Form onSubmit={this.onSubmit}>
             <Row>
               <Col md={6}>
