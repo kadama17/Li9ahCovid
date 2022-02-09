@@ -80,7 +80,7 @@ export default class CreatePatient extends Component {
     };
 
     await axios
-      .post("http://127.0.0.1:8000/api/patients/", patient)
+      .post(process.env.API_URL + "api/patients/", patient)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
 

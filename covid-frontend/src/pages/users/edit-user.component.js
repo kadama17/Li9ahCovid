@@ -36,9 +36,9 @@ export default class EditUser extends Component {
     console.log(id);
 
     axios
-      .get("http://127.0.0.1:8000/api/users/" + id)
+      .get(process.env.REACT_APP_API_URL + "api/users/" + id)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         this.setState({
           code_patient: res.data.code_patient,
           nom: res.data.name,
@@ -46,10 +46,10 @@ export default class EditUser extends Component {
           contact: res.data.contact,
           adresse: res.data.adresse,
           sexe: res.data.sexe,
-         
+
           matricule: res.data.matricule,
           email: res.data.email,
-          type: res.data.type
+          type: res.data.type,
         });
       })
       .catch((error) => {
@@ -98,7 +98,7 @@ export default class EditUser extends Component {
     console.log(id);
 
     axios
-      .put("http://127.0.0.1:8000/api/patients/" + id, userObject)
+      .put(process.env.API_URL + "api/patients/" + id, userObject)
       .then((res) => {
         console.log(res.data);
         console.log("Expense successfully updated");
@@ -114,98 +114,95 @@ export default class EditUser extends Component {
   render() {
     return (
       <div>
+        <NavBar />
 
-
-      <NavBar/>
-  
-      <div style={{ marginLeft: "15%" }} className="form-wrapper">
+        <div style={{ marginLeft: "15%" }} className="form-wrapper">
           <Form onSubmit={this.onSubmit}>
             <Row>
               <Col md={5} sm={6}>
-              <Form.Group controlId="MatUser">
-                <Form.Label>Matricule Personnel</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.matricule}
-                  onChange={this.onChangeUserMatricule}
-                />
-              </Form.Group>
-            </Col>
+                <Form.Group controlId="MatUser">
+                  <Form.Label>Matricule Personnel</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.matricule}
+                    onChange={this.onChangeUserMatricule}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Col md={5} sm={6}>
-              <Form.Group controlId="NomUser">
-                <Form.Label>Nom & Prenom Personnel</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.nom}
-                  onChange={this.onChangeUserNom}
-                />
-              </Form.Group>
-            </Col>
-            <Col md={5} sm={6}>
-              <Form.Group controlId="DateNaissance">
-                <Form.Label>Date de Naissance</Form.Label>
-                <Form.Control
-                  type="type"
-                  value={this.state.date_naiss}
-                  onChange={this.onChangeDateNaissance}
-                />
-              </Form.Group>
-            </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="NomUser">
+                  <Form.Label>Nom & Prenom Personnel</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.nom}
+                    onChange={this.onChangeUserNom}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="DateNaissance">
+                  <Form.Label>Date de Naissance</Form.Label>
+                  <Form.Control
+                    type="type"
+                    value={this.state.date_naiss}
+                    onChange={this.onChangeDateNaissance}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Col md={5} sm={6}>
-              <Form.Group controlId="Email">
-                <Form.Label>Email Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.email}
-                  onChange={this.onChangeUserEmail}
-                />
-              </Form.Group>
-            </Col>
-            <Col md={5} sm={6}>
-              <Form.Group controlId="Type">
-                <Form.Label>Mot de passe</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.password}
-                  onChange={this.onChangeUserPassword}
-                />
-              </Form.Group>
-            </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Email">
+                  <Form.Label>Email Patient</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.email}
+                    onChange={this.onChangeUserEmail}
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Type">
+                  <Form.Label>Mot de passe</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.password}
+                    onChange={this.onChangeUserPassword}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Col md={5} sm={6}>
-              <Form.Group controlId="Adresse">
-                <Form.Label>Type de compte</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.type}
-                  onChange={this.onChangeUserType}
-                />
-              </Form.Group>
-            </Col>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="Adresse">
+                  <Form.Label>Type de compte</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.type}
+                    onChange={this.onChangeUserType}
+                  />
+                </Form.Group>
+              </Col>
 
-            <Col md={5} sm={6}>
-              <Form.Group controlId="UserSexe">
-                <Form.Label>Sexe</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.sexe}
-                  onChange={this.onChangeUserSexe}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
+              <Col md={5} sm={6}>
+                <Form.Group controlId="UserSexe">
+                  <Form.Label>Sexe</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.sexe}
+                    onChange={this.onChangeUserSexe}
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
 
-          <Button variant="primary" size="lg" block="block" type="submit">
-            Créer l'utilisateur
-          </Button>
-        </Form>
-        <br></br>
-        <br></br>
+            <Button variant="primary" size="lg" block="block" type="submit">
+              Créer l'utilisateur
+            </Button>
+          </Form>
+          <br></br>
+          <br></br>
+        </div>
       </div>
-      </div>
-
     );
   }
 }

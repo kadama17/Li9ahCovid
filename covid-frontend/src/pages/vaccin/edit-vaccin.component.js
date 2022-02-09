@@ -32,7 +32,7 @@ export default class EditVaccin extends Component {
     const id = window.location.pathname.split("/")[2];
 
     axios
-      .get("http://127.0.0.1:8000/api/vaccins/" + id)
+      .get(process.env.REACT_APP_API_URL + "api/vaccins/" + id)
       .then((res) => {
         this.setState({
           code_vaccin: res.data.code_vaccin,
@@ -85,7 +85,7 @@ export default class EditVaccin extends Component {
     console.log(id);
 
     axios
-      .put("http://127.0.0.1:8000/api/vaccins/" + id, vaccinObject)
+      .put(process.env.REACT_APP_API_URL + "api/vaccins/" + id, vaccinObject)
       .then((res) => {
         console.log(res.data);
         console.log("Expense successfully updated");
@@ -160,7 +160,7 @@ export default class EditVaccin extends Component {
               </Col>
 
               <Col md={5} sm={6}>
-                  <Form.Group controlId="NbreDose">
+                <Form.Group controlId="NbreDose">
                   <Form.Label>Nombre de dose par personnes</Form.Label>
                   <Form.Control
                     type="number"

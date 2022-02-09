@@ -10,11 +10,9 @@ export default class TableUser extends Component {
     console.log(props);
   }
 
-  
-
   deleteUser() {
     axios
-      .delete("http://localhost:8000/api/users/" + this.props.obj.id)
+      .delete(process.env.REACT_APP_API_URL + "api/users/" + this.props.obj.id)
       .then((res) => {
         console.log("Personnel supprimé!");
       })
@@ -30,15 +28,17 @@ export default class TableUser extends Component {
         <td>{this.props.obj.date_naissance}</td>
         <td>{this.props.obj.sexe}</td>
         <td>{this.props.obj.type}</td>
-  
+
         <td>
           <Link className="edit-link" to={"/edit-user/" + this.props.obj.id}>
             <Button size="sm" variant="primary">
               Modifier
             </Button>
           </Link>
-      
-         <Button onClick={this.deleteUser} size="sm" variant="danger">Supprimer</Button> 
+
+          <Button onClick={this.deleteUser} size="sm" variant="danger">
+            Supprimer
+          </Button>
         </td>
       </tr>
     );

@@ -116,7 +116,7 @@ export default class EditPatient extends Component {
     console.log(id);
 
     axios
-      .put("http://127.0.0.1:8000/api/patients/" + id, patientObject)
+      .put(process.env.API_URL + "api/patients/" + id, patientObject)
       .then((res) => {
         console.log(res.data);
         console.log("Expense successfully updated");
@@ -190,7 +190,7 @@ export default class EditPatient extends Component {
                   />
                 </Form.Group>
               </Col>
-        
+
               <Col md={5} sm={6}>
                 <Form.Group controlId="Adresse">
                   <Form.Label>Adrese Patient</Form.Label>

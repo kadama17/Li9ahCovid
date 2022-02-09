@@ -41,7 +41,7 @@ const SoignantRoute = (
   </>
 );
 
-const Gestion = (
+const GestionRoute = (
   <>
     <Route path="create-vaccin" element={<CreateVaccin />} />
     <Route path="vaccin-list" element={<VaccinListe />} />
@@ -104,9 +104,9 @@ class App extends React.Component {
 
             {window.localStorage.getItem("user") &&
             window.localStorage.getItem("user").length > 1 &&
-            JSON.parse(window.localStorage.getItem("user")).type ==
+            JSON.parse(window.localStorage.getItem("user")).type ===
               "Logistique" ? (
-              Gestion
+              GestionRoute
             ) : (
               <Route path="*" element={<Navigate to="/" />} />
             )}

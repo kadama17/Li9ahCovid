@@ -32,7 +32,11 @@ export default class PassVaccinal extends Component {
     e.preventDefault();
 
     await axios
-      .get("http://127.0.0.1:8000/api/patientsCode/" + this.state.code_patient)
+      .get(
+        process.env.REACT_APP_API_URL +
+          "api/patientsCode/" +
+          this.state.code_patient
+      )
       .then((res) => {
         if (res.data.success == true) {
           this.setState({
@@ -59,17 +63,30 @@ export default class PassVaccinal extends Component {
         className="form-wrapper"
         style={{ background: `url("images/covid-background.jpg")` }}
       >
-        <div className="card-pass card-5">
+        <div
+          style={{
+            background: `url("images/form-pass.jpg")`,
+            objectFit: "cover",
+          }}
+          className="card-pass card-5"
+        >
           <Form onSubmit={this.onSubmit}>
             <Row>
+              <Col md={3}>{/* <img src="images/logo.png" /> */}</Col>
               <Col md={6}>
                 <Form.Group controlId="CodePatient">
-                  <Form.Label>
+                  <Form.Label
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "15px",
+                      marginBottom: "10px",
+                    }}
+                  >
                     Plateforme de délivrance de l'Attestation de Vaccination
                     CORONAVIRUS (COVID-19) Entrez votre code patient
                   </Form.Label>
                   <Form.Control
-                    placeholder="Code patient"
+                    placeholder="Entrez votre code..."
                     type="text"
                     value={this.state.code_patient}
                     onChange={this.onChangePatientCode}

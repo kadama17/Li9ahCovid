@@ -8,13 +8,13 @@ import { NavBar } from "../../components/Navbard";
 
 export default class VaccinerFinal extends Component {
   constructor(props) {
-
     super(props);
 
     this.onChangePatientCode = this.onChangePatientCode.bind(this);
     this.onChangePatientNom = this.onChangePatientNom.bind(this);
     this.onChangePatientPrenom = this.onChangePatientPrenom.bind(this);
-    this.onChangePatientDateNaissance =this.onChangePatientDateNaissance.bind(this);
+    this.onChangePatientDateNaissance =
+      this.onChangePatientDateNaissance.bind(this);
     this.onChangePatientContact = this.onChangePatientContact.bind(this);
     this.onChangePatientAdresse = this.onChangePatientAdresse.bind(this);
     this.onChangePatientProfession = this.onChangePatientProfession.bind(this);
@@ -36,19 +36,15 @@ export default class VaccinerFinal extends Component {
       vaccinListe: [],
       vaccin: "",
       rdv: "",
-      vaccinationInfo: ""
+      vaccinationInfo: "",
     };
-
   }
 
   componentDidMount() {
-  
-   
-        const id = window.location.pathname.split("/")[2];
+    const id = window.location.pathname.split("/")[2];
 
-  
     axios
-      .get("http://127.0.0.1:8000/api/patients/" + id)
+      .get(process.env.API_URL + "api/patients/" + id)
       .then((res) => {
         this.setState({
           code_patient: res.data.code_patient,
@@ -61,29 +57,25 @@ export default class VaccinerFinal extends Component {
           sexe: res.data.sexe,
           statut: res.data.statut,
           rdv: res.data.rdv,
-          vaccinationInfo: ""
+          vaccinationInfo: "",
         });
       })
       .catch((error) => {
         console.log(error);
       });
 
-
-      
-      axios
-      .get("http://127.0.0.1:8000/api/vaccinationsPatient/"+id)
+    axios
+      .get(process.env.API_URL + "vaccinationsPatient/" + id)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         this.setState({ vaccinationInfo: res.data });
       })
       .catch((error) => {
         console.log(error);
       });
 
-
-      
     axios
-      .get("http://127.0.0.1:8000/api/vaccins")
+      .get(process.env.API_URL + "api/vaccins")
       .then((res) => {
         this.setState({ vaccinListe: res.data });
       })
@@ -107,8 +99,6 @@ export default class VaccinerFinal extends Component {
 
   onChangePatientDateNaissance(e) {
     this.setState({ date_naiss: e.target.value });
-
-
   }
   onChangePatientContact(e) {
     this.setState({ contact: e.target.value });
@@ -136,98 +126,108 @@ export default class VaccinerFinal extends Component {
     this.setState({ rdv: e.target.value });
   };
 
-
- 
-
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state.vaccin)
+    console.log(this.state.vaccin);
     let id_patient = window.location.pathname.split("/")[2];
 
     var today = new Date(),
+      date =
+        today.getFullYear() +
+        "-" +
+        today.getMonth() +
+        1 +
+        "-" +
+        today.getDate() +
+        "-";
 
-    date =  today.getFullYear()+'-'+  today.getMonth() + 1 + '-' + today.getDate()+"-"   ;
- 
     let patientObject = {
-  
-      date_dose_2: date
+      date_dose_2: date,
     };
-    console.log(patientObject)
-    axios
-      .put("http://127.0.0.1:8000/api/vaccinations/"+this.state.vaccinationInfo.id, patientObject)
+    console.log(patientObject);
+    axios.put(
+      process.env.API_URL + "api/vaccinations/" + this.state.vaccinationInfo.id,
+      patientObject
+    );
 
-  
-
-      axios.put('http://127.0.0.1:8000/api/patients/'+id_patient, {
-        statut: "Vacciné",
-
-      });
+    axios.put(process.env.API_URL + "api/patients/" + id_patient, {
+      statut: "Vacciné",
+    });
     // Redirect to Expense List
     this.props.history.push("/liste-patient");
   }
 
   render() {
-    return (
-
-      this.state.statut = "VC" ? 
-
+    return (this.state.statut = "VC" ? (
       <div>
-      <NavBar/>
-      <div className="form-wrapper">
-        <Form onSubmit={this.onSubmit}>
-          <Row>
-            <Col>
-              <Form.Group controlId="CodePatient">
-                <Form.Label>Code Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  disabled="true"
-                  value={this.state.code_patient}
-                />
-              </Form.Group>
-            </Col>
-
-            <Col>
-              <Form.Group controlId="Nom">
-                <Form.Label>Nom Patien</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.nom}
-                  onChange={this.onChangePatientNom}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group controlId="Prenom">
-                <Form.Label>Prenom Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={this.state.prenom}
-                  onChange={this.onChangePatientPrenom}
-                />
-              </Form.Group>
-
+        <NavBar />
+        <div className="form-wrapper">
+          <Form onSubmit={this.onSubmit}>
+            <Row>
               <Col>
-                <Form.Group controlId="Naissance">
-                  <Form.Label>Date de Naissance Patient</Form.Label>
+                <Form.Group controlId="CodePatient">
+                  <Form.Label>Code Patient</Form.Label>
                   <Form.Control
                     type="text"
-                    value={this.state.date_naiss}
-                    onChange={this.onChangePatientDateNaissance}
+                    disabled="true"
+                    value={this.state.code_patient}
+                  />
+                </Form.Group>
+              </Col>
+
+              <Col>
+                <Form.Group controlId="Nom">
+                  <Form.Label>Nom Patien</Form.Label>
+                  <Form.Control
+                    type="text"
+                    value={this.state.nom}
+                    onChange={this.onChangePatientNom}
                   />
                 </Form.Group>
               </Col>
               <Col>
-                <Form.Group controlId="Contact">
-                  <Form.Label>Contact Patient</Form.Label>
+                <Form.Group controlId="Prenom">
+                  <Form.Label>Prenom Patient</Form.Label>
                   <Form.Control
                     type="text"
-                    value={this.state.contact}
-                    onChange={this.onChangePatientContact}
+                    value={this.state.prenom}
+                    onChange={this.onChangePatientPrenom}
+                  />
+                </Form.Group>
+
+                <Col>
+                  <Form.Group controlId="Naissance">
+                    <Form.Label>Date de Naissance Patient</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={this.state.date_naiss}
+                      onChange={this.onChangePatientDateNaissance}
+                    />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Group controlId="Contact">
+                    <Form.Label>Contact Patient</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={this.state.contact}
+                      onChange={this.onChangePatientContact}
+                    />
+                  </Form.Group>
+                </Col>
+              </Col>
+              <Col>
+                <Form.Group controlId="CodePatient">
+                  <Form.Label>Code Patient</Form.Label>
+                  <Form.Control
+                    type="text"
+                    disabled="true"
+                    value={this.state.vaccinationInfo.nom_vaccin}
                   />
                 </Form.Group>
               </Col>
-            </Col>
+            </Row>
+
             <Col>
               <Form.Group controlId="CodePatient">
                 <Form.Label>Code Patient</Form.Label>
@@ -238,27 +238,21 @@ export default class VaccinerFinal extends Component {
                 />
               </Form.Group>
             </Col>
-          </Row>
 
-          <Col>
-              <Form.Group controlId="CodePatient">
-                <Form.Label>Code Patient</Form.Label>
-                <Form.Control
-                  type="text"
-                  disabled="true"
-                  value={this.state.vaccinationInfo.nom_vaccin}
-                />
-              </Form.Group>
-            </Col>
-
-                 
-            <Button variant="primary" size="lg" block="block" type="submit" onClick={this.onSubmit}>
-            Enregistrer 2er Dose
-          </Button>
-        </Form>
+            <Button
+              variant="primary"
+              size="lg"
+              block="block"
+              type="submit"
+              onClick={this.onSubmit}
+            >
+              Enregistrer 2er Dose
+            </Button>
+          </Form>
+        </div>
       </div>
-      </div>
-      : " "
-    );
+    ) : (
+      " "
+    ));
   }
 }

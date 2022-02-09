@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Button, Card } from "react-bootstrap";
 import { NavBar } from "../components/Navbard";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
 import "./Dashboard.css";
 export default class Dashboard extends Component {
   constructor(props) {
@@ -23,74 +22,43 @@ export default class Dashboard extends Component {
 
         <div>
           {this.state.role === "Soignant" ? (
-            <div style={{ marginLeft: "20%" }}>
-              <Row>
-                <Col md={5} sm={6}>
-                  <Card
-                    style={{
-                      marginTop: "30px",
-                      float: "left",
-                      width: "20rem",
-                      marginLeft: "10px",
-                      marginRight: "92px",
-                    }}
-                  >
+            <>
+              <div className="box">
+                <div>
+                  <Card className="Card-Dashboard">
                     <Card.Img src="images/vaccination.png" />
                     <Card.Body>
                       <Card.Title> Vacciner un patient</Card.Title>
-                      <Card.Text>
-                        Vous pouvez visitez la liste de patient déjà existant,
-                        pour effectuer sa vaccination. Si le patient n'est pas
-                        enregistrer, vous devez le faire avant.
-                      </Card.Text>
+                      <Card.Text></Card.Text>
                       <Button href="/patient-list" variant="primary">
                         Vacciner
                       </Button>
                     </Card.Body>
                   </Card>
-                </Col>
-                <Col>
-                  <Card
-                    style={{
-                      marginTop: "30px",
-                      float: "left",
-                      width: "20rem",
-                      marginLeft: "10px",
-                      marginRight: "92px",
-                    }}
-                  >
+                </div>
+                <div>
+                  <Card className="Card-Dashboard">
                     <Card.Img src="images/patient-vaccc.jpg" />
                     <Card.Body>
                       <Card.Title> Enregistrer un patient</Card.Title>
-                      <Card.Text>
-                        Un formulaire vous permettra d'enregistrer de nouveau
-                        patient et aussi les informations sur la vaccination.
-                      </Card.Text>
+                      <Card.Text></Card.Text>
                       <Button href="/create-patient" variant="primary">
                         Enregistrer
                       </Button>
                     </Card.Body>
                   </Card>
-                </Col>
-              </Row>
-            </div>
+                </div>
+              </div>
+            </>
           ) : (
             " "
           )}
 
           {this.state.role === "Logistique" ? (
-            <div style={{ marginLeft: "20%" }}>
-              <Row>
-                <Col md={5} sm={6}>
-                  <Card
-                    style={{
-                      marginTop: "30px",
-                      float: "left",
-                      width: "20rem",
-                      marginLeft: "10px",
-                      marginRight: "92px",
-                    }}
-                  >
+            <>
+              <div className="box">
+                <div>
+                  <Card className="Card-Dashboard">
                     <Card.Img src="images/vaccin.jpg" />
                     <Card.Body>
                       <Card.Title>Enregister un nouveau vaccin </Card.Title>
@@ -104,8 +72,10 @@ export default class Dashboard extends Component {
                       </Button>
                     </Card.Body>
                   </Card>
-                </Col>
-                <Col md={5} sm={6}>
+                </div>
+              </div>
+              <div className="box">
+                <div>
                   <Card className="Card-Dashboard">
                     <Card.Img src="images/vaccin-list.png" />
                     <Card.Body>
@@ -119,9 +89,9 @@ export default class Dashboard extends Component {
                       </Button>
                     </Card.Body>
                   </Card>
-                </Col>
-              </Row>
-            </div>
+                </div>
+              </div>
+            </>
           ) : (
             ""
           )}

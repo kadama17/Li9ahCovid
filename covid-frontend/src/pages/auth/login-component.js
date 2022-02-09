@@ -17,6 +17,8 @@ export class Login extends React.Component {
     this.addFormData = this.addFormData.bind(this);
   }
 
+  componentDidMount() {}
+
   componentDidUpdate() {
     console.log(this.state);
   }
@@ -28,7 +30,7 @@ export class Login extends React.Component {
     fd.append("password", this.refs.password.value);
 
     //call api
-    axios.post("http://127.0.0.1:8000/api/login", fd).then((res) => {
+    axios.post(process.env.REACT_APP_API_URL + "api/login", fd).then((res) => {
       console.log(res.data);
       //Success alert
       if (res.data.success == false) {

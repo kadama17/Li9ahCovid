@@ -10,11 +10,9 @@ export default class TablePatient extends Component {
     console.log(props);
   }
 
-  
-
   deletePatient() {
     axios
-      .delete("http://localhost:8000/api/patients/" + this.props.obj.id)
+      .delete(process.env.API_URL + "api/patients/" + this.props.obj.id)
       .then((res) => {
         console.log("Expense removed deleted!");
       })
@@ -41,32 +39,27 @@ export default class TablePatient extends Component {
               Modifier
             </Button>
           </Link>
-          {
-            (this.props.obj.statut == "VC" ? (
-              <Link
-                className="edit-link"
-                to={"/vacciner-final/" + this.props.obj.id}
-              >
-                <Button size="sm" variant="info">
-                  2ème dose
-                </Button>
-              </Link>
-            ) : 
-            this.props.obj.statut=="NV"?
-            
-            (
-              <Link
-                className="edit-link"
-                to={"/vacciner-patient/" + this.props.obj.id}
-              >
-                <Button size="sm" variant="warning">
-                  1ère dose
-                </Button>
-              </Link>
-            ) : ""
-            )            
-
-          }
+          {this.props.obj.statut == "VC" ? (
+            <Link
+              className="edit-link"
+              to={"/vacciner-final/" + this.props.obj.id}
+            >
+              <Button size="sm" variant="info">
+                2ème dose
+              </Button>
+            </Link>
+          ) : this.props.obj.statut == "NV" ? (
+            <Link
+              className="edit-link"
+              to={"/vacciner-patient/" + this.props.obj.id}
+            >
+              <Button size="sm" variant="warning">
+                1ère dose
+              </Button>
+            </Link>
+          ) : (
+            ""
+          )}
 
           {/* <Button onClick={this.deletePatient} size="sm" variant="danger">Supprimer</Button> */}
         </td>
