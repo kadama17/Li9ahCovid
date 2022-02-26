@@ -5,6 +5,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import "./print-passvaccinal.css";
 import QRCode from "qrcode";
+import { jsPDF } from "jspdf";
+const doc = new jsPDF();
+
 export default class PrintVaccinal extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +25,7 @@ export default class PrintVaccinal extends Component {
   }
 
   componentDidMount() {
+    doc.text("Hello world!", 10, 10);
     let patient = JSON.parse(window.sessionStorage.getItem("pass"));
 
     QRCode.toDataURL(patient.code_patient).then((qr) => {
@@ -49,13 +53,15 @@ export default class PrintVaccinal extends Component {
 
   render() {
     return (
-      <div
-        className="form-wrapper"
-        style={{ background: `url("images/pass-print.jpg")` }}
-      >
+      <div className="form-wrapper" style={{}}>
         {" "}
         <div
           style={{
+            background: `url("images/pass-print.jpg")`,
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "100%",
             background: "#fff",
             borderRadius: "2px",
             display: "inline-block",

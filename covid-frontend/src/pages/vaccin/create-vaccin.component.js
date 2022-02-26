@@ -162,8 +162,10 @@ export default class CreateVaccin extends Component {
               </Col>
             </Row>
 
+            <br />
+            <br />
             <Button variant="primary" size="lg" block="block" type="submit">
-              Add Expense
+              Ajouter le vaccin
             </Button>
           </Form>
           <br></br>

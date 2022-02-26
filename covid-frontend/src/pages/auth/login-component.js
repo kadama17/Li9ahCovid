@@ -56,60 +56,66 @@ export class Login extends React.Component {
 
   render() {
     return (
-      <body style={{ background: `url("images/login-background.jpg")` }}>
-        <div className="maincontainer">
-          <div class="login-card">
-            <div class="login-card-content">
-              <div class="header">
-                <div class="logo">
-                  <img className="logo" src="/images/logo.png" />
-                </div>
+      <div
+        className="maincontainer"
+        style={{
+          background: `url("images/login-background.jpg")`,
+          minHeight: "100vh",
+          minWidth: "104%",
+          position: "relative",
+        }}
+      >
+        <div class="login-card">
+          <div class="login-card-content">
+            <div class="header">
+              <div class="logo">
+                <img className="logo" src="/images/logo.png" />
               </div>
-              <form ref={(el) => (this.myFormRef = el)}>
-                <div className="form">
-                  <div className="form-field username">
-                    <div className="icon">
-                      <PersonIcon />
-                    </div>
-                    <input
-                      type="email"
-                      name="email"
-                      class="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      placeholder="E-mail"
-                      ref="myEmail"
-                    />
-                  </div>
-                  <div class="form-field password">
-                    <div class="icon">
-                      <LockOpenIcon />
-                    </div>
-                    <input
-                      type="password"
-                      name="password"
-                      class="form-control"
-                      id="exampleInputPass1"
-                      aria-describedby="passHelp"
-                      placeholder="mot de passe"
-                      ref="password"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="button-login"
-                    onClick={this.addFormData}
-                  >
-                    Connexion
-                  </button>
-                </div>
-              </form>
             </div>
-            <div class="login-card-footer"></div>
+            <form ref={(el) => (this.myFormRef = el)}>
+              <div className="form">
+                <div className="form-field username">
+                  <div className="icon">
+                    <PersonIcon />
+                  </div>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder="E-mail"
+                    ref="myEmail"
+                  />
+                </div>
+                <div class="form-field password">
+                  <div class="icon">
+                    <LockOpenIcon />
+                  </div>
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    id="exampleInputPass1"
+                    aria-describedby="passHelp"
+                    placeholder="mot de passe"
+                    ref="password"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="button-login"
+                  onClick={this.addFormData}
+                >
+                  Connexion
+                </button>
+              </div>
+            </form>
           </div>
+          <div class="login-card-footer"></div>
         </div>
-      </body>
+      </div>
     );
   }
 }

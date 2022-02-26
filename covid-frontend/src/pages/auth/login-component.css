@@ -7,6 +7,12 @@
   font-size: 14px;
   justify-content: center;
 }
+.my-body {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
 
 .logo {
   border-radius: 50%;
