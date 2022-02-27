@@ -7,6 +7,8 @@ import "./print-passvaccinal.css";
 import QRCode from "qrcode";
 import { jsPDF } from "jspdf";
 const doc = new jsPDF();
+const iframe =
+  '<iframe height="265" style="width: 100%;" scrolling="no" title="fx." src="//codepen.io/ycw/embed/JqwbQw/?height=265&theme-id=0&default-tab=js,result" frameborder="no" allowtransparency="true" allowfullscreen="true">See the Pen <a href="https://codepen.io/ycw/pen/JqwbQw/">fx.</a> by ycw(<a href="https://codepen.io/ycw">@ycw</a>) on <a href="https://codepen.io">CodePen</a>.</iframe>';
 
 export default class PrintVaccinal extends Component {
   constructor(props) {
@@ -24,8 +26,92 @@ export default class PrintVaccinal extends Component {
     };
   }
 
+  savePass() {
+    //Ajout d'amoirie
+    var amoirie = new Image();
+    amoirie.src = "images/logo_maroc.png";
+
+    // doc.text("Hello world!", 10, 10);
+    doc.addImage(amoirie, "png", 1, 2, 55, 50);
+    //Ajout de logo ministère
+    var logoMinistere = new Image();
+    logoMinistere.src = "images/logo.png";
+    doc.addImage(logoMinistere, "png", 150, 2, 50, 50);
+    doc.text("تصريح التطعيم", 62, 20);
+    doc.text("PASS VACCINAL", 73, 26);
+    doc.text("VACCINE PASS", 73, 32);
+
+    // ajout de qrCode
+    var qr = new Image();
+    qr.src = this.state.src;
+    doc.addImage(qr, "png", 65, 60, 80, 80);
+    //affichage du code patient
+
+    doc.setFontSize(13);
+    doc.text("CODE PATIENT ", 10, 150);
+    doc.setFontSize(11);
+    doc.text("PATIENT CODE", 12, 155);
+    doc.text(this.state.patient.code_patient, 100, 152);
+    doc.setFontSize(15);
+    doc.text("كود المريض", 150, 152);
+
+    //affichage du nom complet
+
+    doc.setFontSize(13);
+    doc.text("NOM COMPLET ", 10, 180);
+    doc.setFontSize(11);
+    doc.text("PATIENT CODE", 12, 186);
+    doc.text(
+      this.state.patient.nom + " " + this.state.patient.prenom,
+      100,
+      185
+    );
+    doc.setFontSize(15);
+    doc.text("الاسم الكامل", 150, 185);
+
+    //affichage de date de naissance
+
+    doc.setFontSize(13);
+    doc.text("DATE DE NAISSANCE ", 10, 203);
+    doc.setFontSize(11);
+    doc.text("DATE OF BIRTH", 12, 208);
+    doc.text(this.state.patient.date_naiss, 100, 208);
+    doc.setFontSize(15);
+    doc.text("الاسم الكامل", 150, 209);
+
+    //  information 1ere dose
+
+    doc.setFontSize(13);
+    doc.text(" DATE DE PRIMIERE DOSE", 10, 223);
+    doc.setFontSize(11);
+    doc.text("DATE OF FIRST DOSE", 12, 227);
+    doc.text(this.state.vaccinationInfo.date_dose_1, 100, 225);
+    doc.setFontSize(15);
+    doc.text("الاسم الكامل", 150, 224);
+
+    //  information 2eme dose
+
+    doc.setFontSize(13);
+    doc.text(" DATE DE DEUXIEME DOSE", 10, 250);
+    doc.setFontSize(11);
+    doc.text("DATE OF SECOND DOSE", 12, 255);
+    doc.text(this.state.vaccinationInfo.date_dose_2, 100, 255);
+    doc.setFontSize(15);
+    doc.text("الاسم الكامل", 150, 254);
+
+    // TYPE DE VACCIN
+
+    doc.setFontSize(13);
+    doc.text("TYPE DE VACCIN", 10, 270);
+    doc.setFontSize(11);
+    doc.text("VACCINE TYPE", 12, 275);
+    doc.text(this.state.vaccinationInfo.nom_vaccin, 100, 275);
+    doc.setFontSize(15);
+    doc.text("الاسم الكامل", 150, 274);
+
+    doc.save("mon pass vaccinal.pdf");
+  }
   componentDidMount() {
-    doc.text("Hello world!", 10, 10);
     let patient = JSON.parse(window.sessionStorage.getItem("pass"));
 
     QRCode.toDataURL(patient.code_patient).then((qr) => {
@@ -53,16 +139,19 @@ export default class PrintVaccinal extends Component {
 
   render() {
     return (
-      <div className="form-wrapper" style={{}}>
+      <div
+        className="form-wrapper"
+        style={{
+          background: `url("images/pass-print.jpg")`,
+          position: "absolute",
+          left: 0,
+          top: 0,
+          width: "100%",
+        }}
+      >
         {" "}
         <div
           style={{
-            background: `url("images/pass-print.jpg")`,
-            position: "absolute",
-            left: 0,
-            top: 0,
-            width: "100%",
-            background: "#fff",
             borderRadius: "2px",
             display: "inline-block",
             height: "393px",
@@ -247,9 +336,18 @@ export default class PrintVaccinal extends Component {
             <Col md={4}></Col>
           </Row>
           <br />
-          <Button variant="primary" size="lg" block="block" type="submit">
-            Télécharger{" "}
+
+          <Button
+            variant="success"
+            size="lg"
+            block="block"
+            onClick={() => {
+              this.savePass();
+            }}
+          >
+            TELECHARGER{" "}
           </Button>
+
           <br></br>
           <br></br>
         </div>
