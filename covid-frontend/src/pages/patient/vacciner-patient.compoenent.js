@@ -52,7 +52,7 @@ export default class VaccinerPatient extends Component {
     const id = window.location.pathname.split("/")[2];
 
     axios
-      .get(process.env.API_URL + "api/patients/" + id)
+      .get(process.env.REACT_APP_API_URL + "api/patients/" + id)
       .then((res) => {
         this.setState({
           code_patient: res.data.code_patient,
@@ -72,7 +72,7 @@ export default class VaccinerPatient extends Component {
       });
 
     axios
-      .get(process.env.API_URL + "api/vaccins")
+      .get(process.env.REACT_APP_API_URL + "api/vaccins")
       .then((res) => {
         this.setState({ vaccinListe: res.data });
       })
@@ -143,11 +143,11 @@ export default class VaccinerPatient extends Component {
       nom_vaccin: this.state.vaccin,
       rdv: this.state.rdv,
       date_dose_1: date,
-      dose2: "",
+      dose2: null,
     };
     console.log(patientObject);
     axios
-      .post(process.env.API_URL + "api/vaccinations/", patientObject)
+      .post(process.env.REACT_APP_API_URL + "api/vaccinations/", patientObject)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     Swal.fire(

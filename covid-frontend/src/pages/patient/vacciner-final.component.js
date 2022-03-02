@@ -44,7 +44,7 @@ export default class VaccinerFinal extends Component {
     const id = window.location.pathname.split("/")[2];
 
     axios
-      .get(process.env.API_URL + "api/patients/" + id)
+      .get(process.env.REACT_APP_API_URL + "api/patients/" + id)
       .then((res) => {
         this.setState({
           code_patient: res.data.code_patient,
@@ -65,7 +65,7 @@ export default class VaccinerFinal extends Component {
       });
 
     axios
-      .get(process.env.API_URL + "vaccinationsPatient/" + id)
+      .get(process.env.REACT_APP_API_URL + "vaccinationsPatient/" + id)
       .then((res) => {
         console.log(res);
         this.setState({ vaccinationInfo: res.data });
@@ -75,7 +75,7 @@ export default class VaccinerFinal extends Component {
       });
 
     axios
-      .get(process.env.API_URL + "api/vaccins")
+      .get(process.env.REACT_APP_API_URL + "api/vaccins")
       .then((res) => {
         this.setState({ vaccinListe: res.data });
       })
@@ -146,11 +146,11 @@ export default class VaccinerFinal extends Component {
     };
     console.log(patientObject);
     axios.put(
-      process.env.API_URL + "api/vaccinations/" + this.state.vaccinationInfo.id,
+      process.env.REACT_APP_API_URL + "api/vaccinations/" + this.state.vaccinationInfo.id,
       patientObject
     );
 
-    axios.put(process.env.API_URL + "api/patients/" + id_patient, {
+    axios.put(process.env.REACT_APP_API_URL + "api/patients/" + id_patient, {
       statut: "Vacciné",
     });
     // Redirect to Expense List
