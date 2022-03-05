@@ -35,8 +35,6 @@ const SoignantRoute = (
     <Route path="/dashboard" element={<Dashboard />} />
 
     <Route path="/vacciner-final/:id" element={<VaccinerFinal />} />
-    <Route path="/form-pass" element={<PassVaccinal />} />
-    <Route path="/print-pass" element={<PrintVaccinal />} />
     <Route path="*" element={<Navigate to="/dashboard" />} />
   </>
 );
@@ -62,8 +60,6 @@ const AdminRoute = (
     <Route path="/dashboard" element={<Dashboard />} />
 
     <Route path="/vacciner-final/:id" element={<VaccinerFinal />} />
-    <Route path="/form-pass" element={<PassVaccinal />} />
-    <Route path="/print-pass" element={<PrintVaccinal />} />
     <Route path="*" element={<Navigate to="/dashboard" />} />
     <Route path="create-user" element={<CreateUser />} />
     <Route path="user-list" element={<UserListe />} />
@@ -92,6 +88,8 @@ class App extends React.Component {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/form-pass" element={<PassVaccinal />} />
+            <Route path="/print-pass" element={<PrintVaccinal />} />
 
             {window.localStorage.getItem("user") &&
             window.localStorage.getItem("user").length > 1 &&

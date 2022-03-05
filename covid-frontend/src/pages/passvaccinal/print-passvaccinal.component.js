@@ -30,19 +30,17 @@ export default class PrintVaccinal extends Component {
     //Ajout d'amoirie
     var amoirie = new Image();
     amoirie.src = "images/logo_maroc.png";
-    
 
     // doc.text("Hello world!", 10, 10);
     doc.addImage(amoirie, "png", 1, 2, 55, 50);
-
 
     //Ajout de logo ministère
     var logoMinistere = new Image();
 
     logoMinistere.src = "images/logo.png";
     doc.addImage(logoMinistere, "png", 150, 2, 50, 50);
-    
-    doc.text("تصريح التطعيم", 62, 20);
+
+    // doc.text("تصريح التطعيم", 62, 20);
     doc.text("PASS VACCINAL", 73, 26);
     doc.text("VACCINE PASS", 73, 32);
 
@@ -58,7 +56,7 @@ export default class PrintVaccinal extends Component {
     doc.text("PATIENT CODE", 12, 155);
     doc.text(this.state.patient.code_patient, 100, 152);
     doc.setFontSize(15);
-    doc.text("كود المريض", 150, 152);
+    // doc.text("كود المريض", 150, 152);
 
     //affichage du nom complet
 
@@ -71,9 +69,9 @@ export default class PrintVaccinal extends Component {
       100,
       185
     );
-    
+
     doc.setFontSize(15);
-    doc.text("الاسم الكامل", 150, 185);
+    // doc.text("الاسم الكامل", 150, 185);
 
     //affichage de date de naissance
 
@@ -83,17 +81,17 @@ export default class PrintVaccinal extends Component {
     doc.text("DATE OF BIRTH", 12, 208);
     doc.text(this.state.patient.date_naiss, 100, 208);
     doc.setFontSize(15);
-    doc.text("الاسم الكامل", 150, 209);
+    //doc.text("الاسم الكامل", 150, 209);
 
     //  information 1ere dose
 
-  //  doc.setFontSize(13);
-    //doc.text(" DATE DE PRIMIERE DOSE", 10, 223);
-    //doc.setFontSize(11);
-   // doc.text("DATE OF FIRST DOSE", 12, 227);
-   // doc.text(this.state.vaccinationInfo.date_dose_1, 100, 225);
-   // doc.setFontSize(15);
-   // doc.text("الاسم الكامل", 150, 224);
+    doc.setFontSize(13);
+    doc.text(" DATE DE PRIMIERE DOSE", 10, 223);
+    doc.setFontSize(11);
+    doc.text("DATE OF FIRST DOSE", 12, 227);
+    doc.text(this.state.vaccinationInfo.date_dose_1, 100, 225);
+    // doc.setFontSize(15);
+    // doc.text("الاسم الكامل", 150, 224);
 
     //  information 2eme dose
 
@@ -102,8 +100,8 @@ export default class PrintVaccinal extends Component {
     doc.setFontSize(11);
     doc.text("DATE OF SECOND DOSE", 12, 255);
     doc.text(this.state.vaccinationInfo.date_dose_2, 100, 255);
-    doc.setFontSize(15);
-    doc.text("الاسم الكامل", 150, 254);
+    // doc.setFontSize(15);
+    //doc.text("الاسم الكامل", 150, 254);
 
     // TYPE DE VACCIN
 
@@ -113,7 +111,7 @@ export default class PrintVaccinal extends Component {
     doc.text("VACCINE TYPE", 12, 275);
     doc.text(this.state.vaccinationInfo.nom_vaccin, 100, 275);
     doc.setFontSize(15);
-    doc.text("الاسم الكامل", 150, 274);
+    // doc.text("الاسم الكامل", 150, 274);
     doc.save("mon pass vaccinal.pdf");
   }
   componentDidMount() {
