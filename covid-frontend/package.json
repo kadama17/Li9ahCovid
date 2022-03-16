@@ -2,7 +2,6 @@
   "name": "covid-frontend",
   "version": "0.1.0",
   "homepage": ".",
-
   "private": true,
   "proxy": "http://localhost:8000/",
   "dependencies": {
@@ -27,6 +26,7 @@
     "font-awesome": "^4.7.0",
     "install": "^0.13.0",
     "jspdf": "^2.5.1",
+    "moment": "^2.29.1",
     "npm": "^8.4.1",
     "qrcode": "^1.5.0",
     "react": "^17.0.2",

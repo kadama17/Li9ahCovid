@@ -142,7 +142,7 @@ export default class VaccinerFinal extends Component {
         "-";
 
     let patientObject = {
-      date_dose_2: "2022-03-16",
+      date_dose_2: new Date().toISOString().slice(0, 10),
     };
     console.log(patientObject);
     axios.put(

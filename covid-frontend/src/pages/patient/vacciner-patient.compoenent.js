@@ -136,7 +136,7 @@ export default class VaccinerPatient extends Component {
       id_patient: id_patient,
       nom_vaccin: this.state.vaccin,
       rdv: this.state.rdv,
-      date_dose_1: "2022-03-16",
+      date_dose_1: new Date().toISOString().slice(0, 10),
       dose2: null,
     };
     console.log(patientObject);
