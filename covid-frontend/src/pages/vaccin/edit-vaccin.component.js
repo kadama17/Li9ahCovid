@@ -95,7 +95,7 @@ export default class EditVaccin extends Component {
       });
 
     // Redirect to Expense List
-    this.props.history.push("/liste-vaccin");
+    window.location.replace("/vaccin-list");
   }
 
   render() {
@@ -171,8 +171,14 @@ export default class EditVaccin extends Component {
               </Col>
             </Row>
 
-            <Button variant="primary" size="lg" block="block" type="submit">
-              Add Expense
+            <Button
+              style={{ marginRight: "170px", marginTop: "50px" }}
+              variant="primary"
+              size="lg"
+              block="block"
+              type="submit"
+            >
+              Modifier
             </Button>
           </Form>
         </div>

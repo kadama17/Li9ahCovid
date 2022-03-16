@@ -4,6 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { NavBar } from "../../components/Navbard";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
 export default class CreatePatient extends Component {
   constructor(props) {
@@ -105,6 +106,7 @@ export default class CreatePatient extends Component {
       sexe: "",
       statut: "",
     });
+    window.location.replace("/patient-list");
   }
 
   render() {
@@ -160,7 +162,7 @@ export default class CreatePatient extends Component {
                 <Form.Group controlId="Contact">
                   <Form.Label>Contact Patient</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="number"
                     value={this.state.contact}
                     onChange={this.onChangePatientContact}
                   />
@@ -189,13 +191,25 @@ export default class CreatePatient extends Component {
                 </Form.Group>
               </Col>
               <Col md={5} sm={6}>
-                <Form.Group controlId="Sexe">
-                  <Form.Label>Sexe Patient</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={this.state.sexe}
+                <Form.Group controlId="UserSexe">
+                  <Form.Label>Sexe</Form.Label>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
                     onChange={this.onChangePatientSexe}
-                  />
+                    row
+                  >
+                    <FormControlLabel
+                      value="masculin"
+                      control={<Radio />}
+                      label="Masculin"
+                    />
+                    <FormControlLabel
+                      value="feminin"
+                      control={<Radio />}
+                      label="Feminin"
+                    />
+                  </RadioGroup>
                 </Form.Group>
               </Col>
             </Row>

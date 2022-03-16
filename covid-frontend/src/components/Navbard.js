@@ -32,7 +32,6 @@ export class NavBar extends React.Component {
             <Nav className="me-auto">
               <Nav.Link href="/patient-list">Patient</Nav.Link>
               <Nav.Link href="vaccin-list">Vaccin</Nav.Link>
-              <Nav.Link href="">vaccination</Nav.Link>
             </Nav>
             <button onClick={this.logout} style={{ background: "#00b5ad" }}>
               Logout

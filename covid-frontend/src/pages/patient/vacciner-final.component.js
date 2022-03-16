@@ -65,7 +65,7 @@ export default class VaccinerFinal extends Component {
       });
 
     axios
-      .get(process.env.REACT_APP_API_URL + "vaccinationsPatient/" + id)
+      .get(process.env.REACT_APP_API_URL + "api/vaccinationsPatient/" + id)
       .then((res) => {
         console.log(res);
         this.setState({ vaccinationInfo: res.data });
@@ -142,11 +142,13 @@ export default class VaccinerFinal extends Component {
         "-";
 
     let patientObject = {
-      date_dose_2: date,
+      date_dose_2: "2022-03-16",
     };
     console.log(patientObject);
     axios.put(
-      process.env.REACT_APP_API_URL + "api/vaccinations/" + this.state.vaccinationInfo.id,
+      process.env.REACT_APP_API_URL +
+        "api/vaccinations/" +
+        this.state.vaccinationInfo.id,
       patientObject
     );
 
@@ -216,21 +218,11 @@ export default class VaccinerFinal extends Component {
                   </Form.Group>
                 </Col>
               </Col>
-              <Col>
-                <Form.Group controlId="CodePatient">
-                  <Form.Label>Code Patient</Form.Label>
-                  <Form.Control
-                    type="text"
-                    disabled="true"
-                    value={this.state.vaccinationInfo.nom_vaccin}
-                  />
-                </Form.Group>
-              </Col>
             </Row>
 
             <Col>
               <Form.Group controlId="CodePatient">
-                <Form.Label>Code Patient</Form.Label>
+                <Form.Label>Nom du vaccin</Form.Label>
                 <Form.Control
                   type="text"
                   disabled="true"

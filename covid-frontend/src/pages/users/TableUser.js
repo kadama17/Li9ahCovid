@@ -19,6 +19,7 @@ export default class TableUser extends Component {
       .catch((error) => {
         console.log(error);
       });
+    window.location.replace("/user-list");
   }
   render() {
     return (

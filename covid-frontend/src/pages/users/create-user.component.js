@@ -92,9 +92,11 @@ export default class CreateUser extends Component {
     // console.log(`Description: ${this.state.description}`);
     Swal.fire(
       "OPERATION EFFECTUEE!",
-      "Patient enregistré avec succès",
+      "Utilisateur crée avec succès",
       "success"
     );
+
+    window.location.replace("/user-list");
 
     this.setState({
       matricule: "",

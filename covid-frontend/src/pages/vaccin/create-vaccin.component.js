@@ -88,6 +88,8 @@ export default class CreateVaccin extends Component {
       date_exp: "",
       nbr_dose: "",
     });
+
+    window.location.replace("/vaccin-list");
   }
 
   render() {

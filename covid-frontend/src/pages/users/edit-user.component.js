@@ -5,6 +5,14 @@ import axios from "axios";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { NavBar } from "../../components/Navbard";
+import {
+  FormControlLabel,
+  InputLabel,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+} from "@mui/material";
 
 export default class EditUser extends Component {
   constructor(props) {
@@ -42,7 +50,7 @@ export default class EditUser extends Component {
         this.setState({
           code_patient: res.data.code_patient,
           nom: res.data.name,
-          date_naiss: res.data.date_naissance,
+          date_naissance: res.data.date_naissance,
           contact: res.data.contact,
           adresse: res.data.adresse,
           sexe: res.data.sexe,
@@ -75,7 +83,7 @@ export default class EditUser extends Component {
     this.setState({ matricule: e.target.value });
   }
   onChangeUserDateNaissance(e) {
-    this.setState({ date_naiss: e.target.value });
+    this.setState({ date_naissance: e.target.value });
   }
 
   onChangeUserSexe(e) {
@@ -87,7 +95,7 @@ export default class EditUser extends Component {
 
     const userObject = {
       matricule: this.state.matricule,
-      nom: this.state.nom,
+      name: this.state.nom,
       date_naissance: this.state.date_naissance,
       email: this.state.email,
       password: this.state.password,
@@ -98,17 +106,16 @@ export default class EditUser extends Component {
     console.log(id);
 
     axios
-      .put(process.env.API_URL + "api/patients/" + id, userObject)
+      .put(process.env.REACT_APP_API_URL + "api/users/" + id, userObject)
       .then((res) => {
         console.log(res.data);
-        console.log("Expense successfully updated");
       })
       .catch((error) => {
         console.log(error);
       });
 
     // Redirect to Expense List
-    this.props.history.push("/liste-patient");
+    window.location.replace("/user-list");
   }
 
   render() {
@@ -144,9 +151,9 @@ export default class EditUser extends Component {
                 <Form.Group controlId="DateNaissance">
                   <Form.Label>Date de Naissance</Form.Label>
                   <Form.Control
-                    type="type"
-                    value={this.state.date_naiss}
-                    onChange={this.onChangeDateNaissance}
+                    type="date"
+                    value={this.state.date_naissance}
+                    onChange={this.onChangeUserDateNaissance}
                   />
                 </Form.Group>
               </Col>
@@ -155,7 +162,7 @@ export default class EditUser extends Component {
                 <Form.Group controlId="Email">
                   <Form.Label>Email Patient</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="email"
                     value={this.state.email}
                     onChange={this.onChangeUserEmail}
                   />
@@ -165,7 +172,7 @@ export default class EditUser extends Component {
                 <Form.Group controlId="Type">
                   <Form.Label>Mot de passe</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="password"
                     value={this.state.password}
                     onChange={this.onChangeUserPassword}
                   />
@@ -173,30 +180,57 @@ export default class EditUser extends Component {
               </Col>
 
               <Col md={5} sm={6}>
-                <Form.Group controlId="Adresse">
-                  <Form.Label>Type de compte</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={this.state.type}
-                    onChange={this.onChangeUserType}
-                  />
-                </Form.Group>
+                <InputLabel id="demo-simple-select-label">
+                  Type de compte
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  onChange={this.onChangeUserType}
+                  value={this.state.type}
+                >
+                  <MenuItem disabled value="Placeholder">
+                    <em>Le type de compte</em>
+                  </MenuItem>
+                  <MenuItem value="Admin">Administrateur</MenuItem>
+                  <MenuItem value="Soignant">Personnel Soignant</MenuItem>
+                  <MenuItem
+                    checked={this.state.type === "Logistique"}
+                    value="Logistique"
+                  >
+                    Logistique
+                  </MenuItem>
+                </Select>
               </Col>
 
               <Col md={5} sm={6}>
                 <Form.Group controlId="UserSexe">
                   <Form.Label>Sexe</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={this.state.sexe}
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
                     onChange={this.onChangeUserSexe}
-                  />
+                    row
+                  >
+                    <FormControlLabel
+                      checked={this.state.sexe === "masculin"}
+                      value="masculin"
+                      control={<Radio />}
+                      label="Masculin"
+                    />
+                    <FormControlLabel
+                      checked={this.state.sexe === "feminin"}
+                      value="feminin"
+                      control={<Radio />}
+                      label="Feminin"
+                    />
+                  </RadioGroup>
                 </Form.Group>
               </Col>
             </Row>
 
             <Button variant="primary" size="lg" block="block" type="submit">
-              Créer l'utilisateur
+              MODIFIER
             </Button>
           </Form>
           <br></br>

@@ -21,30 +21,36 @@ use App\Http\Controllers\VaccinController;
 
 //Route pour les patients
 
-Route::get('/patients', [PatientController::class, 'index'])->name('patients.all');
-Route::post('/patients', [PatientController::class, 'store'])->name('patients.store');
-Route::get('/patients/{patient}', [PatientController::class, 'show'])->name('patients.show');
-Route::put('/patients/{patient}', [PatientController::class, 'update'])->name('patients.update');
-Route::delete('/patients/{patient}', [PatientController::class, 'destroy'])->name('patients.destroy');
+Route::resource('/patients', PatientController::class);
+
+
+
+// Route::get('/patients', [PatientController::class, 'index'])->name('patients.all');
+// Route::post('/patients', [PatientController::class, 'store'])->name('patients.store');
+// Route::get('/patients/{patient}', [PatientController::class, 'show'])->name('patients.show');
+// Route::put('/patients/{patient}', [PatientController::class, 'update'])->name('patients.update');
+// Route::delete('/patients/{patient}', [PatientController::class, 'destroy'])->name('patients.destroy');
 
 //Route pour les vaccins
 
 
-
-Route::get('/vaccins', [VaccinController::class, 'index'])->name('vaccins.all');
-Route::post('/vaccins', [VaccinController::class, 'store'])->name('vaccins.store');
-Route::get('/vaccins/{vaccin}', [VaccinController::class, 'show'])->name('vaccins.show');
-Route::put('/vaccins/{vaccin}', [VaccinController::class, 'update'])->name('vaccins.update');
-Route::delete('/vaccins/{vaccin}', [VaccinController::class, 'destroy'])->name('vaccins.destroy');
+Route::resource('/vaccins', VaccinController::class);
+// Route::get('/vaccins', [VaccinController::class, 'index'])->name('vaccins.all');
+// Route::post('/vaccins', [VaccinController::class, 'store'])->name('vaccins.store');
+// Route::get('/vaccins/{vaccin}', [VaccinController::class, 'show'])->name('vaccins.show');
+// Route::put('/vaccins/{vaccin}', [VaccinController::class, 'update'])->name('vaccins.update');
+// Route::delete('/vaccins/{vaccin}', [VaccinController::class, 'destroy'])->name('vaccins.destroy');
 
 
 // Route pour les vaccination 
 
-Route::get('/vaccinations', [VaccinationController::class, 'index'])->name('vaccinations.all');
-Route::post('/vaccinations', [VaccinationController::class, 'store'])->name('vaccinations.store');
-Route::get('/vaccinations/{vaccination}', [VaccinationController::class, 'show'])->name('vaccinations.show');
-Route::put('/vaccinations/{vaccination}', [VaccinationController::class, 'update'])->name('vaccinations.update');
-Route::delete('/vaccinations/{vaccination}', [VaccinationController::class, 'destroy'])->name('vaccinations.destroy');
+Route::resource('/vaccinations', VaccinationController::class);
+
+// Route::get('/vaccinations', [VaccinationController::class, 'index'])->name('vaccinations.all');
+// Route::post('/vaccinations', [VaccinationController::class, 'store'])->name('vaccinations.store');
+// Route::get('/vaccinations/{vaccination}', [VaccinationController::class, 'show'])->name('vaccinations.show');
+// Route::put('/vaccinations/{vaccination}', [VaccinationController::class, 'update'])->name('vaccinations.update');
+// Route::delete('/vaccinations/{vaccination}', [VaccinationController::class, 'destroy'])->name('vaccinations.destroy');
 
 
 //route pour la recherche à partire de l'id du patient dans la liste de vaccination
@@ -62,11 +68,13 @@ Route::get('/patientsCode/{code_patient}', [PatientController::class, 'showByCod
 //Route pour les utilisateurs
 
 
+Route::resource('/users', UserController::class);
+// Route::get('/users', [UserController::class, 'index'])->name('users.all');
+// Route::post('/users', [UserController::class, 'store'])->name('users.store');
+// Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+// Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+// Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-Route::get('/users', [UserController::class, 'index'])->name('users.all');
-Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
 Route::post('/login', [UserController::class, 'login'])->name('users.login');
 Route::delete('/logout', [UserController::class, 'logout'])->name('users.logout');

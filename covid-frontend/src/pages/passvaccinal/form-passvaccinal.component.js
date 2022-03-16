@@ -61,7 +61,10 @@ export default class PassVaccinal extends Component {
     return (
       <div
         className="form-wrapper"
-        style={{ background: `url("images/covid-background.jpg")` }}
+        style={{
+          width: "104%",
+          background: `url("images/covid-background.jpg")`,
+        }}
       >
         <div
           style={{
@@ -112,9 +115,18 @@ export default class PassVaccinal extends Component {
                     <p style={{ color: "red" }}>{this.state.message}</p>
                   </>
                 )}
-                <Button variant="primary" size="lg" block="block" type="submit">
-                  Valider
-                </Button>
+                {this.state.success == true ? (
+                  ""
+                ) : (
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    block="block"
+                    type="submit"
+                  >
+                    Valider
+                  </Button>
+                )}
               </Col>
             </Row>
           </Form>

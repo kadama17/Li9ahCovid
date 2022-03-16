@@ -17,6 +17,7 @@ export default class TableVaccin extends Component {
       )
       .then((res) => {
         console.log("vaccins supprimé");
+        window.location.replace("/vaccin-list");
       })
       .catch((error) => {
         console.log(error);

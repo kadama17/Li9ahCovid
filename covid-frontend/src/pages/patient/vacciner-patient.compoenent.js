@@ -130,19 +130,13 @@ export default class VaccinerPatient extends Component {
 
     var today = new Date(),
       date =
-        today.getFullYear() +
-        "-" +
-        today.getMonth() +
-        1 +
-        "-" +
-        today.getDate() +
-        "-";
+        today.getFullYear() + "/" + today.getMonth() + 1 + "" + today.getDate();
 
     let patientObject = {
       id_patient: id_patient,
       nom_vaccin: this.state.vaccin,
       rdv: this.state.rdv,
-      date_dose_1: date,
+      date_dose_1: "2022-03-16",
       dose2: null,
     };
     console.log(patientObject);
@@ -156,7 +150,7 @@ export default class VaccinerPatient extends Component {
       "success"
     );
 
-    axios.put(process.env.API_URL + "api/patients/" + id_patient, {
+    axios.put(process.env.REACT_APP_API_URL + "api/patients/" + id_patient, {
       statut: "VC",
     });
     // Redirect to Expense List
@@ -183,7 +177,7 @@ export default class VaccinerPatient extends Component {
 
               <Col>
                 <Form.Group controlId="Nom">
-                  <Form.Label>Nom Patien</Form.Label>
+                  <Form.Label>Nom Patient</Form.Label>
                   <Form.Control
                     type="text"
                     value={this.state.nom}

@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useParams } from "react-router-dom";
 import { NavBar } from "../../components/Navbard";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
 export default class EditPatient extends Component {
   constructor(props) {
@@ -116,7 +117,7 @@ export default class EditPatient extends Component {
     console.log(id);
 
     axios
-      .put(process.env.API_URL + "api/patients/" + id, patientObject)
+      .put(process.env.REACT_APP_API_URL + "api/patients/" + id, patientObject)
       .then((res) => {
         console.log(res.data);
         console.log("Expense successfully updated");
@@ -126,7 +127,7 @@ export default class EditPatient extends Component {
       });
 
     // Redirect to Expense List
-    this.props.history.push("/liste-patient");
+    window.location.replace("/patient-list");
   }
 
   render() {
@@ -173,7 +174,7 @@ export default class EditPatient extends Component {
                 <Form.Group controlId="Naissance">
                   <Form.Label>Date de Naissance Patient</Form.Label>
                   <Form.Control
-                    type="text"
+                    type="date"
                     value={this.state.date_naiss}
                     onChange={this.onChangePatientDateNaissance}
                   />
@@ -184,8 +185,8 @@ export default class EditPatient extends Component {
                 <Form.Group controlId="Contact">
                   <Form.Label>Contact Patient</Form.Label>
                   <Form.Control
-                    type="text"
-                    value={this.state.sexe}
+                    type="number"
+                    value={this.state.contact}
                     onChange={this.onChangePatientContact}
                   />
                 </Form.Group>
@@ -213,19 +214,39 @@ export default class EditPatient extends Component {
                 </Form.Group>
               </Col>
               <Col md={5} sm={6}>
-                <Form.Group controlId="Sexe">
-                  <Form.Label>Sexe Patient</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={this.state.sexe}
+                <Form.Group controlId="UserSexe">
+                  <Form.Label>Sexe</Form.Label>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    name="radio-buttons-group"
                     onChange={this.onChangePatientSexe}
-                  />
+                    row
+                  >
+                    <FormControlLabel
+                      checked={this.state.sexe === "masculin"}
+                      value="masculin"
+                      control={<Radio />}
+                      label="Masculin"
+                    />
+                    <FormControlLabel
+                      checked={this.state.sexe === "feminin"}
+                      value="feminin"
+                      control={<Radio />}
+                      label="Feminin"
+                    />
+                  </RadioGroup>
                 </Form.Group>
               </Col>
             </Row>
 
-            <Button variant="primary" size="lg" block="block" type="submit">
-              Add Expense
+            <Button
+              style={{ marginTop: "70px" }}
+              variant="primary"
+              size="lg"
+              block="block"
+              type="submit"
+            >
+              Modifier
             </Button>
           </Form>
         </div>
