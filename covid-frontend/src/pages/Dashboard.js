@@ -67,7 +67,7 @@ export default class Dashboard extends Component {
                         vacciner, de supprimer, modifier, et de
                         reapprovissionner le stock.
                       </Card.Text>
-                      <Button href="/create-vaccin" variant="primary">
+                      <Button href="/create-vaccin" variant="primary" className='card-button'>
                         Enregistrer
                       </Button>
                     </Card.Body>

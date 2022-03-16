@@ -45,6 +45,8 @@ const GestionRoute = (
     <Route path="vaccin-list" element={<VaccinListe />} />
     <Route path="/edit-vaccin/:id" element={<EditVaccin />} />
     <Route path="/vacciner-patient/:id" element={<VaccinerPatient />} />
+    <Route path="/dashboard" element={<Dashboard />} />
+
   </>
 );
 
