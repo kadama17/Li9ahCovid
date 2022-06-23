@@ -3,10 +3,14 @@ Une application de gestion de vaccination Covid, de la prise de la première dos
 
 Pour cela nous partagons avec vous le frontend & le backend. 
 
-#Le Frontend 
+# Le Frontend 
 Le frontend a été fait avec ReactJs. 
 Pour initialiser le project : npm install
 Pour lancer le project: npm start
 
-#Le backend
-Le backend a été fait avec Laravel, pour cela vous aurez besoin d'un serveur mysql. 
+# Le backend
+Le backend a été fait avec Laravel, pour cela vous aurez besoin d'un serveur mysql.  
+Avant de lancer le project, vous devez effectuez les migrations: php artisan make:migration 
+et après: php artisan migrate 
+
+Pour enfin lancer le serveur: php artisan serve
